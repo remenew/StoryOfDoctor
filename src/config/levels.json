@@ -1,0 +1,574 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "description": "关卡配置，根据疾病难度递进设计"
+  },
+  "chapters": [
+    {
+      "id": "chapter_1",
+      "name": "初入江湖",
+      "description": "常见病诊治，积累经验",
+      "unlockCondition": null
+    },
+    {
+      "id": "chapter_2",
+      "name": "小有名气",
+      "description": "少发病诊治，医术精进",
+      "unlockCondition": "chapter_1_complete"
+    },
+    {
+      "id": "chapter_3",
+      "name": "名震一方",
+      "description": "罕见病诊治，挑战疑难",
+      "unlockCondition": "chapter_2_complete"
+    },
+    {
+      "id": "chapter_4",
+      "name": "神医之路",
+      "description": "极难病症，起死回生",
+      "unlockCondition": "chapter_3_complete"
+    }
+  ],
+  "levels": [
+    {
+      "id": "level_1_1",
+      "chapter": "chapter_1",
+      "name": "风寒初诊",
+      "description": "一位村民患了风寒感冒，症见恶寒发热、头痛身痛",
+      "diseaseId": "lung_0000",
+      "patientName": "虚弱的村民",
+      "patientHealth": 40,
+      "targetHealth": 70,
+      "startingQi": 3,
+      "maxQi": 3,
+      "startingDeck": [
+        "jingjie",
+        "fangfeng",
+        "zisu",
+        "shengjiang",
+        "mahuang",
+        "gancao",
+        "xingren",
+        "guizhi",
+        "chaihu",
+        "danggui"
+      ],
+      "reward": {
+        "cards": [
+          "yinqiaosan"
+        ],
+        "gold": 50
+      }
+    },
+    {
+      "id": "level_1_2",
+      "chapter": "chapter_1",
+      "name": "风热感冒",
+      "description": "一位书生患了风热感冒，症见发热咽痛、咳嗽痰黄",
+      "diseaseId": "lung_0001",
+      "patientName": "患病的书生",
+      "patientHealth": 45,
+      "targetHealth": 75,
+      "startingQi": 3,
+      "maxQi": 3,
+      "startingDeck": [
+        "jinyinhua",
+        "lianqiao",
+        "bohe",
+        "jiegeng",
+        "sangye",
+        "juhua",
+        "gancao",
+        "xingren",
+        "chaihu",
+        "fangfeng"
+      ],
+      "reward": {
+        "cards": [
+          "mahuangtang"
+        ],
+        "gold": 50
+      }
+    },
+    {
+      "id": "level_1_3",
+      "chapter": "chapter_1",
+      "name": "风寒咳嗽",
+      "description": "一位老农咳嗽多日，症见咳嗽声重、痰稀白",
+      "diseaseId": "lung_0005",
+      "patientName": "咳嗽的老农",
+      "patientHealth": 50,
+      "targetHealth": 80,
+      "startingQi": 3,
+      "maxQi": 3,
+      "startingDeck": [
+        "mahuang",
+        "xingren",
+        "gancao",
+        "zisuzi",
+        "chenpi",
+        "banxia",
+        "fuling",
+        "chaihu",
+        "ganjiang",
+        "danggui"
+      ],
+      "reward": {
+        "cards": [
+          "huangqi"
+        ],
+        "gold": 60
+      }
+    },
+    {
+      "id": "level_1_4",
+      "chapter": "chapter_1",
+      "name": "胃寒疼痛",
+      "description": "一位渔夫胃脘冷痛，得温则舒",
+      "diseaseId": "spleen_0083",
+      "patientName": "胃痛的渔夫",
+      "patientHealth": 50,
+      "targetHealth": 80,
+      "startingQi": 3,
+      "maxQi": 3,
+      "startingDeck": [
+        "gaoliangjiang",
+        "xiangfu",
+        "houpo",
+        "chenpi",
+        "ganjiang",
+        "guizhi",
+        "baizhu",
+        "ganjiang",
+        "chaihu",
+        "fuling"
+      ],
+      "reward": {
+        "cards": [
+          "danggui"
+        ],
+        "gold": 60
+      }
+    },
+    {
+      "id": "level_1_5",
+      "chapter": "chapter_1",
+      "name": "心虚心悸",
+      "description": "一位商人近日心悸不安，气短乏力",
+      "diseaseId": "heart_0040",
+      "patientName": "心悸的商人",
+      "patientHealth": 50,
+      "targetHealth": 80,
+      "startingQi": 3,
+      "maxQi": 3,
+      "startingDeck": [
+        "renshen",
+        "baizhu",
+        "fuling",
+        "danggui",
+        "longyanrou",
+        "suanzaoren",
+        "gancao",
+        "baizhu",
+        "chaihu",
+        "fuling"
+      ],
+      "reward": {
+        "cards": [
+          "guipitang"
+        ],
+        "gold": 70
+      }
+    },
+    {
+      "id": "level_2_1",
+      "chapter": "chapter_2",
+      "name": "风寒湿痹",
+      "description": "一位樵夫关节酸痛，遇寒加重",
+      "diseaseId": "limb_0173",
+      "patientName": "患痹的樵夫",
+      "patientHealth": 50,
+      "targetHealth": 80,
+      "startingQi": 4,
+      "maxQi": 4,
+      "startingDeck": [
+        "qianghuo",
+        "fangfeng",
+        "guizhi",
+        "danggui",
+        "huangqi",
+        "chuanxiong",
+        "niuxi",
+        "chenpi",
+        "danggui",
+        "ganjiang"
+      ],
+      "reward": {
+        "cards": [
+          "tianma"
+        ],
+        "gold": 80
+      }
+    },
+    {
+      "id": "level_2_2",
+      "chapter": "chapter_2",
+      "name": "胃热炽盛",
+      "description": "一位酒客胃脘灼痛，口臭便秘",
+      "diseaseId": "spleen_0084",
+      "patientName": "酗酒的富商",
+      "patientHealth": 55,
+      "targetHealth": 85,
+      "startingQi": 4,
+      "maxQi": 4,
+      "startingDeck": [
+        "huanglian",
+        "shengdi",
+        "mudanpi",
+        "shengma",
+        "danggui",
+        "dahuang",
+        "zhizi",
+        "chaihu",
+        "chenpi",
+        "jiegeng"
+      ],
+      "reward": {
+        "cards": [
+          "huangqin"
+        ],
+        "gold": 80
+      }
+    },
+    {
+      "id": "level_2_3",
+      "chapter": "chapter_2",
+      "name": "肝气郁结",
+      "description": "一位夫人情志抑郁，胸胁胀满",
+      "diseaseId": "qi_0140",
+      "patientName": "忧愁的夫人",
+      "patientHealth": 50,
+      "targetHealth": 80,
+      "startingQi": 4,
+      "maxQi": 4,
+      "startingDeck": [
+        "chaihu",
+        "xiangfu",
+        "chuanxiong",
+        "chenpi",
+        "zhishi",
+        "baishao",
+        "danggui",
+        "chaihu",
+        "danggui",
+        "fuling"
+      ],
+      "reward": {
+        "cards": [
+          "longdan"
+        ],
+        "gold": 90
+      }
+    },
+    {
+      "id": "level_2_4",
+      "chapter": "chapter_2",
+      "name": "痰湿眩晕",
+      "description": "一位官员头晕目眩，胸闷恶心",
+      "diseaseId": "brain_0068",
+      "patientName": "眩晕的官员",
+      "patientHealth": 50,
+      "targetHealth": 80,
+      "startingQi": 4,
+      "maxQi": 4,
+      "startingDeck": [
+        "banxia",
+        "baizhu",
+        "tianma",
+        "fuling",
+        "chenpi",
+        "shichangpu",
+        "chaihu",
+        "ganjiang",
+        "jiegeng",
+        "fangfeng"
+      ],
+      "reward": {
+        "cards": [
+          "gouteng"
+        ],
+        "gold": 90
+      }
+    },
+    {
+      "id": "level_2_5",
+      "chapter": "chapter_2",
+      "name": "失眠心脾",
+      "description": "一位秀才彻夜难眠，心悸健忘",
+      "diseaseId": "heart_0056",
+      "patientName": "失眠的秀才",
+      "patientHealth": 50,
+      "targetHealth": 80,
+      "startingQi": 4,
+      "maxQi": 4,
+      "startingDeck": [
+        "danggui",
+        "longyanrou",
+        "renshen",
+        "baizhu",
+        "huangqi",
+        "suanzaoren",
+        "fuling",
+        "baizhu",
+        "chaihu",
+        "fuling"
+      ],
+      "reward": {
+        "cards": [
+          "guipitang"
+        ],
+        "gold": 100
+      }
+    },
+    {
+      "id": "level_3_1",
+      "chapter": "chapter_3",
+      "name": "冷哮发作",
+      "description": "一位老人喉间哮鸣，四肢厥冷",
+      "diseaseId": "lung_0012",
+      "patientName": "哮证老者",
+      "patientHealth": 60,
+      "targetHealth": 100,
+      "startingQi": 4,
+      "maxQi": 4,
+      "startingDeck": [
+        "mahuang",
+        "shegan",
+        "xingren",
+        "xixin",
+        "banxia",
+        "ganjiang",
+        "zhishi",
+        "ganjiang",
+        "chaihu",
+        "baizhu"
+      ],
+      "reward": {
+        "cards": [
+          "beimu"
+        ],
+        "gold": 120
+      }
+    },
+    {
+      "id": "level_3_2",
+      "chapter": "chapter_3",
+      "name": "肝火炽盛",
+      "description": "一位武将头晕目赤，急躁易怒",
+      "diseaseId": "heart_0054",
+      "patientName": "暴躁的武将",
+      "patientHealth": 60,
+      "targetHealth": 100,
+      "startingQi": 4,
+      "maxQi": 4,
+      "startingDeck": [
+        "longdan",
+        "huangqin",
+        "zhizi",
+        "chaihu",
+        "shengdi",
+        "mudanpi",
+        "cheqianzi",
+        "chaihu",
+        "chenpi",
+        "jiegeng"
+      ],
+      "reward": {
+        "cards": [
+          "longdanxiegan"
+        ],
+        "gold": 120
+      }
+    },
+    {
+      "id": "level_3_3",
+      "chapter": "chapter_3",
+      "name": "黄疸缠身",
+      "description": "一位商人身目发黄，小便短赤",
+      "diseaseId": "spleen_0104",
+      "patientName": "黄疸商人",
+      "patientHealth": 65,
+      "targetHealth": 110,
+      "startingQi": 5,
+      "maxQi": 5,
+      "startingDeck": [
+        "yinchen",
+        "zhizi",
+        "dahuang",
+        "huangqin",
+        "fuling",
+        "chuanxiong",
+        "cheqianzi",
+        "chaihu",
+        "danggui",
+        "jiegeng"
+      ],
+      "reward": {
+        "cards": [
+          "shijueming"
+        ],
+        "gold": 130
+      }
+    },
+    {
+      "id": "level_3_4",
+      "chapter": "chapter_3",
+      "name": "阳水水肿",
+      "description": "一位病人全身浮肿，来势急骤",
+      "diseaseId": "kidney_0121",
+      "patientName": "水肿病人",
+      "patientHealth": 60,
+      "targetHealth": 100,
+      "startingQi": 5,
+      "maxQi": 5,
+      "startingDeck": [
+        "mahuang",
+        "shigao",
+        "baizhu",
+        "fuling",
+        "zexie",
+        "cheqianzi",
+        "yihtuoren",
+        "chaihu",
+        "chenpi",
+        "fangfeng"
+      ],
+      "reward": {
+        "cards": [
+          "fuzi"
+        ],
+        "gold": 130
+      }
+    },
+    {
+      "id": "level_4_1",
+      "chapter": "chapter_4",
+      "name": "肺痈重症",
+      "description": "一位病人咳吐脓血腥臭痰，高热不退",
+      "diseaseId": "lung_0028",
+      "patientName": "肺痈病人",
+      "patientHealth": 70,
+      "targetHealth": 120,
+      "startingQi": 5,
+      "maxQi": 5,
+      "startingDeck": [
+        "lugen",
+        "yiyiren",
+        "dongguazi",
+        "taoren",
+        "jiegeng",
+        "jinyinhua",
+        "lianqiao",
+        "beimu",
+        "chaihu",
+        "baizhu"
+      ],
+      "reward": {
+        "cards": [
+          "renshen"
+        ],
+        "gold": 150
+      }
+    },
+    {
+      "id": "level_4_2",
+      "chapter": "chapter_4",
+      "name": "胸痹心痛",
+      "description": "一位老人胸痛彻背，喘息气短",
+      "diseaseId": "heart_0047",
+      "patientName": "胸痹老人",
+      "patientHealth": 75,
+      "targetHealth": 130,
+      "startingQi": 5,
+      "maxQi": 5,
+      "startingDeck": [
+        "gualou",
+        "xiebai",
+        "banxia",
+        "zhishi",
+        "guizhi",
+        "danggui",
+        "chuanxiong",
+        "ganjiang",
+        "chaihu",
+        "baizhu"
+      ],
+      "reward": {
+        "cards": [
+          "suhexiangwan"
+        ],
+        "gold": 160
+      }
+    },
+    {
+      "id": "level_4_3",
+      "chapter": "chapter_4",
+      "name": "中风阳闭",
+      "description": "一位老者突然昏仆，牙关紧闭，面赤身热",
+      "diseaseId": "brain_0078",
+      "patientName": "中风老者",
+      "patientHealth": 90,
+      "targetHealth": 160,
+      "startingQi": 6,
+      "maxQi": 6,
+      "startingDeck": [
+        "lingyangjiao",
+        "gouteng",
+        "shijueming",
+        "zhuli",
+        "beimu",
+        "tianma",
+        "shichangpu",
+        "baizhu",
+        "fuling",
+        "renshen"
+      ],
+      "reward": {
+        "cards": [
+          "angongniuhuang"
+        ],
+        "gold": 200
+      }
+    },
+    {
+      "id": "level_4_4",
+      "chapter": "chapter_4",
+      "name": "虚劳危症",
+      "description": "一位病人形销骨立，五脏亏损",
+      "diseaseId": "lung_0034",
+      "patientName": "虚劳病人",
+      "patientHealth": 80,
+      "targetHealth": 140,
+      "startingQi": 6,
+      "maxQi": 6,
+      "startingDeck": [
+        "renshen",
+        "huangqi",
+        "baizhu",
+        "danggui",
+        "shudihuang",
+        "lujiao",
+        "lurong",
+        "baizhu",
+        "fuling",
+        "renshen"
+      ],
+      "reward": {
+        "cards": [
+          "dabuyuanjian"
+        ],
+        "gold": 200
+      }
+    }
+  ]
+}

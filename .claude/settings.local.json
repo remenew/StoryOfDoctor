@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(~/.claude/skills/gstack/bin/gstack-config set:*)",
+      "WebSearch",
+      "Bash(~/.claude/skills/gstack/browse/dist/browse goto:*)",
+      "Bash(~/.claude/skills/gstack/browse/dist/browse screenshot:*)",
+      "Bash(~/.claude/skills/gstack/bin/gstack-review-log '{\"skill\":\"plan-eng-review\",\"timestamp\":\"2026-03-25T11:52:00Z\",\"status\":\"clean\",\"unresolved\":0,\"critical_gaps\":5,\"issues_found\":12,\"mode\":\"FULL_REVIEW\",\"commit\":\"unknown\"}')",
+      "Bash(~/.claude/skills/gstack/bin/gstack-review-read)",
+      "Bash(cat:*)",
+      "Bash(npm install:*)",
+      "Bash(timeout 10 npm run dev)",
+      "Bash(npm run:*)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(/dev/null npm:*)",
+      "Bash(pkill -f vite)",
+      "Bash(xargs kill:*)",
+      "Bash(curl -s http://localhost:8888)",
+      "Bash(node:*)",
+      "Bash(curl -s localhost:3000)",
+      "Bash(curl -v localhost:3000)",
+      "Bash(curl --noproxy '*' -s localhost:3000)",
+      "Bash(curl --noproxy '*' -s localhost:3001)",
+      "Bash(claude login:*)",
+      "Read(//mnt/d/game/**)",
+      "Read(//mnt/d/**)",
+      "Bash(curl:*)",
+      "Bash(docker info:*)",
+      "Bash(make check:*)",
+      "Bash(python3:*)",
+      "Bash(~/.claude/skills/gstack/bin/gstack-review-log '{\"\"skill\"\":\"\"plan-eng-review\"\",\"\"timestamp\"\":\"\"2026-03-29T15:22:16Z\"\",\"\"status\"\":\"\"issues_open\"\",\"\"unresolved\"\":0,\"\"critical_gaps\"\":3,\"\"issues_found\"\":14,\"\"mode\"\":\"\"FULL_REVIEW\"\",\"\"commit\"\":\"\"no-git\"\"}')",
+      "Bash(~/.claude/skills/gstack/bin/gstack-review-log '{\"\"skill\"\":\"\"codex-plan-review\"\",\"\"timestamp\"\":\"\"2026-03-29T15:22:30Z\"\",\"\"status\"\":\"\"issues_found\"\",\"\"source\"\":\"\"claude\"\",\"\"commit\"\":\"\"no-git\"\"}')",
+      "Bash(~/.claude/skills/gstack/bin/gstack-review-log '{\"\"skill\"\":\"\"plan-eng-review\"\",\"\"timestamp\"\":\"\"2026-03-29T15:23:00Z\"\",\"\"status\"\":\"\"clean\"\",\"\"unresolved\"\":0,\"\"critical_gaps\"\":0,\"\"issues_found\"\":14,\"\"mode\"\":\"\"FULL_REVIEW\"\",\"\"commit\"\":\"\"no-git\"\"}')",
+      "Bash(explorer.exe /tmp/medgod-mapscene.html)",
+      "Bash(explorer.exe /tmp/medgod-results.html)",
+      "Bash(explorer.exe /tmp/medgod-battle-additions.html)",
+      "Bash(~/.claude/skills/gstack/bin/gstack-review-log '{\"\"skill\"\":\"\"plan-design-review\"\",\"\"timestamp\"\":\"\"2026-03-29T16:45:00Z\"\",\"\"status\"\":\"\"clean\"\",\"\"initial_score\"\":5,\"\"overall_score\"\":9,\"\"unresolved\"\":0,\"\"decisions_made\"\":8,\"\"commit\"\":\"\"no-git\"\"}')"
+    ]
+  }
+}

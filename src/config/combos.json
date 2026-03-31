@@ -1,0 +1,268 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "description": "中医组合技，基于经典方剂配伍"
+  },
+  "combos": [
+    {
+      "id": "tou_biao",
+      "name": "透表解郁",
+      "description": "柴胡配针灸，表里双解，效果更佳",
+      "requiredCards": ["chaihu", "chaihu"],
+      "effect": {
+        "type": "healBonus",
+        "value": 20
+      }
+    },
+    {
+      "id": "tong_jing_luo",
+      "name": "通经络",
+      "description": "针灸配推拿，经络疏通，恢复加倍",
+      "requiredCards": ["chaihu", "danggui"],
+      "effect": {
+        "type": "healBonus",
+        "value": 15
+      }
+    },
+    {
+      "id": "jun_chen_zuo_shi",
+      "name": "君臣佐使",
+      "description": "三药合用，各司其职，效果倍增",
+      "requiredCards": ["herb", "herb", "herb"],
+      "effect": {
+        "type": "healMultiplier",
+        "value": 1.5
+      }
+    },
+    {
+      "id": "gui_zhi_ma_huang",
+      "name": "麻黄桂枝",
+      "description": "麻黄配桂枝，发汗解表，驱寒有力",
+      "requiredCards": ["mahuang", "guizhi"],
+      "effect": {
+        "type": "healBonus",
+        "value": 18
+      }
+    },
+    {
+      "id": "si_jun_zi",
+      "name": "四君子汤",
+      "description": "人参白术茯苓甘草，健脾益气基础方",
+      "requiredCards": ["renshen", "baizhu", "fuling", "gancao"],
+      "effect": {
+        "type": "healBonus",
+        "value": 50
+      }
+    },
+    {
+      "id": "si_wu_tang",
+      "name": "四物汤",
+      "description": "当归川芎白芍熟地，补血活血基础方",
+      "requiredCards": ["danggui", "chuanxiong", "baishao", "shudihuang"],
+      "effect": {
+        "type": "healBonus",
+        "value": 45
+      }
+    },
+    {
+      "id": "er_chen_tang",
+      "name": "二陈汤",
+      "description": "半夏陈皮茯苓甘草，燥湿化痰基础方",
+      "requiredCards": ["banxia", "chenpi", "fuling", "gancao"],
+      "effect": {
+        "type": "healBonus",
+        "value": 35
+      }
+    },
+    {
+      "id": "yin_qiao_san",
+      "name": "银翘散",
+      "description": "金银花连翘薄荷桔梗，风热感冒主方",
+      "requiredCards": ["jinyinhua", "lianqiao", "bohe", "jiegeng"],
+      "effect": {
+        "type": "healBonus",
+        "value": 40
+      }
+    },
+    {
+      "id": "gan_jiang_fuzi",
+      "name": "干姜附子",
+      "description": "干姜配附子，温阳散寒，回阳救逆",
+      "requiredCards": ["ganjiang", "fuzi"],
+      "effect": {
+        "type": "healBonus",
+        "value": 30
+      }
+    },
+    {
+      "id": "zhi_ke_ping_chuan",
+      "name": "止咳平喘",
+      "description": "麻黄杏仁配甘草，宣肺平喘",
+      "requiredCards": ["mahuang", "xingren", "gancao"],
+      "effect": {
+        "type": "healBonus",
+        "value": 25
+      }
+    },
+    {
+      "id": "li_qi_jian_pi",
+      "name": "理气健脾",
+      "description": "陈皮半夏配白术，理气化痰健脾",
+      "requiredCards": ["chenpi", "banxia", "baizhu"],
+      "effect": {
+        "type": "healBonus",
+        "value": 28
+      }
+    },
+    {
+      "id": "shu_gan_jie_yu",
+      "name": "疏肝解郁",
+      "description": "柴胡香附配川芎，疏肝理气解郁",
+      "requiredCards": ["chaihu", "xiangfu", "chuanxiong"],
+      "effect": {
+        "type": "healBonus",
+        "value": 25
+      }
+    },
+    {
+      "id": "bu_qi_yang_xue",
+      "name": "补气养血",
+      "description": "黄芪当归配人参，气血双补",
+      "requiredCards": ["huangqi", "danggui", "renshen"],
+      "effect": {
+        "type": "healBonus",
+        "value": 45
+      }
+    },
+    {
+      "id": "qing_re_li_shi",
+      "name": "清热利湿",
+      "description": "茵陈栀子配大黄，清热利湿退黄",
+      "requiredCards": ["yinchen", "zhizi", "dahuang"],
+      "effect": {
+        "type": "healBonus",
+        "value": 38
+      }
+    },
+    {
+      "id": "ping_gan_xi_feng",
+      "name": "平肝熄风",
+      "description": "天麻钩藤配石决明，平肝潜阳熄风",
+      "requiredCards": ["tianma", "gouteng", "shijueming"],
+      "effect": {
+        "type": "healBonus",
+        "value": 42
+      }
+    },
+    {
+      "id": "wen_jing_tong_luo",
+      "name": "温经通络",
+      "description": "桂枝艾灸配生姜，温经散寒通络",
+      "requiredCards": ["guizhi", "ganjiang", "shengjiang"],
+      "effect": {
+        "type": "healBonus",
+        "value": 22
+      }
+    },
+    {
+      "id": "bu_shen_zhuang_yang",
+      "name": "补肾壮阳",
+      "description": "鹿茸肉苁蓉配巴戟天，补肾壮阳强筋",
+      "requiredCards": ["lurong", "roucongrong", "bajitian"],
+      "effect": {
+        "type": "healBonus",
+        "value": 50
+      }
+    },
+    {
+      "id": "yang_xin_an_shen",
+      "name": "养心安神",
+      "description": "酸枣仁龙眼肉配当归，养心安神补血",
+      "requiredCards": ["suanzaoren", "longyanrou", "danggui"],
+      "effect": {
+        "type": "healBonus",
+        "value": 30
+      }
+    },
+    {
+      "id": "hua_tan_kai_qiao",
+      "name": "化痰开窍",
+      "description": "半夏石菖蒲配胆南星，化痰开窍醒神",
+      "requiredCards": ["banxia", "shichangpu", "danxing"],
+      "effect": {
+        "type": "healBonus",
+        "value": 35
+      }
+    },
+    {
+      "id": "tong_lin_pai_shi",
+      "name": "通淋排石",
+      "description": "石韦海金沙配金钱草，利尿通淋排石",
+      "requiredCards": ["shiwei", "haijinsha", "jinqiancao"],
+      "effect": {
+        "type": "healBonus",
+        "value": 35
+      }
+    },
+    {
+      "id": "huo_xue_hua_yu",
+      "name": "活血化瘀",
+      "description": "当归桃仁配川芎，活血化瘀通络",
+      "requiredCards": ["danggui", "taoren", "chuanxiong"],
+      "effect": {
+        "type": "healBonus",
+        "value": 28
+      }
+    },
+    {
+      "id": "xiong_bi_tong_yang",
+      "name": "胸痹通阳",
+      "description": "瓜蒌薤白配半夏，通阳散结宽胸",
+      "requiredCards": ["gualou", "xiebai", "banxia"],
+      "effect": {
+        "type": "healBonus",
+        "value": 35
+      }
+    },
+    {
+      "id": "zhu_you_fuzhou",
+      "name": "祝由符咒",
+      "description": "祝由术配符咒，神秘力量倍增",
+      "requiredCards": ["fuling", "fangfeng"],
+      "effect": {
+        "type": "healBonus",
+        "value": 20
+      }
+    },
+    {
+      "id": "qi_gong_zhen_jiu",
+      "name": "气功针灸",
+      "description": "气功配针灸，内气外针，疗效倍增",
+      "requiredCards": ["baizhu", "chaihu"],
+      "effect": {
+        "type": "healBonus",
+        "value": 35
+      }
+    },
+    {
+      "id": "ba_guan_gua_sha",
+      "name": "拔罐刮痧",
+      "description": "拔罐配刮痧，祛风散寒活血",
+      "requiredCards": ["chenpi", "jiegeng"],
+      "effect": {
+        "type": "healBonus",
+        "value": 20
+      }
+    },
+    {
+      "id": "ba_zhen_tang",
+      "name": "八珍汤",
+      "description": "四君子汤配四物汤，气血双补圣方",
+      "requiredCards": ["renshen", "baizhu", "fuling", "gancao", "danggui", "chuanxiong", "baishao", "shudihuang"],
+      "effect": {
+        "type": "healBonus",
+        "value": 100
+      }
+    }
+  ]
+}

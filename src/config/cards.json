@@ -1,0 +1,1504 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "source": "《中药学》《方剂学》及中医经典",
+    "description": "中医卡牌数据库，包含药物、技能、巫术三类"
+  },
+  "cardTypes": {
+    "herb": {
+      "name": "草药牌",
+      "color": "#4888ff",
+      "description": "中药方剂，各有专长"
+    },
+    "skill": {
+      "name": "技能牌",
+      "color": "#aa44ff",
+      "description": "医术技法，手到病除"
+    },
+    "magic": {
+      "name": "巫术牌",
+      "color": "#ff8844",
+      "description": "祝由禁咒，神秘力量"
+    },
+    "secret": {
+      "name": "秘方牌",
+      "color": "#c41e3a",
+      "description": "传世秘方，起死回生"
+    }
+  },
+  "rarity": {
+    "common": {
+      "name": "常用药",
+      "weight": 40
+    },
+    "uncommon": {
+      "name": "较常用",
+      "weight": 30
+    },
+    "rare": {
+      "name": "名贵药",
+      "weight": 20
+    },
+    "legendary": {
+      "name": "稀世珍品",
+      "weight": 10
+    }
+  },
+  "cards": [
+    {
+      "id": "jingjie",
+      "name": "荆芥",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 8
+        }
+      ],
+      "description": "祛风解表，透疹止痒",
+      "indication": "风寒感冒初起"
+    },
+    {
+      "id": "fangfeng",
+      "name": "防风",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "祛风解表，胜湿止痛",
+      "indication": "风寒湿痹，感冒头痛"
+    },
+    {
+      "id": "zisu",
+      "name": "紫苏",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 8
+        }
+      ],
+      "description": "解表散寒，行气宽中",
+      "indication": "风寒感冒，咳嗽呕恶"
+    },
+    {
+      "id": "shengjiang",
+      "name": "生姜",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 0,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 5
+        }
+      ],
+      "description": "解表散寒，温中止呕",
+      "indication": "风寒感冒轻症"
+    },
+    {
+      "id": "jinyinhua",
+      "name": "金银花",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "清热解毒，疏散风热",
+      "indication": "风热感冒，咽喉肿痛"
+    },
+    {
+      "id": "lianqiao",
+      "name": "连翘",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "清热解毒，消肿散结",
+      "indication": "风热感冒，痈肿疮毒"
+    },
+    {
+      "id": "bohe",
+      "name": "薄荷",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 8
+        }
+      ],
+      "description": "疏散风热，清利头目",
+      "indication": "风热感冒，头痛目赤"
+    },
+    {
+      "id": "jiegeng",
+      "name": "桔梗",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "宣肺利咽，祛痰排脓",
+      "indication": "咳嗽痰多，咽喉肿痛"
+    },
+    {
+      "id": "mahuang",
+      "name": "麻黄",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "发汗解表，宣肺平喘",
+      "indication": "风寒感冒，咳嗽气喘"
+    },
+    {
+      "id": "xingren",
+      "name": "杏仁",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "止咳平喘，润肠通便",
+      "indication": "咳嗽气喘"
+    },
+    {
+      "id": "gancao",
+      "name": "甘草",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "补脾益气，清热解毒，调和诸药",
+      "indication": "咳嗽，脾胃虚弱"
+    },
+    {
+      "id": "zisuzi",
+      "name": "紫苏子",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "降气化痰，止咳平喘",
+      "indication": "痰壅气逆，咳嗽气喘"
+    },
+    {
+      "id": "huangqin",
+      "name": "黄芩",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "清热燥湿，泻火解毒",
+      "indication": "肺热咳嗽，湿热泻痢"
+    },
+    {
+      "id": "huanglian",
+      "name": "黄连",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 15
+        }
+      ],
+      "description": "清热燥湿，泻火解毒",
+      "indication": "湿热痞满，呕吐吞酸"
+    },
+    {
+      "id": "baizhu",
+      "name": "白术",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 20
+        }
+      ],
+      "description": "健脾益气，燥湿利水",
+      "indication": "脾虚食少，水肿"
+    },
+    {
+      "id": "fuling",
+      "name": "茯苓",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "利水渗湿，健脾宁心",
+      "indication": "水肿尿少，脾虚食少"
+    },
+    {
+      "id": "chenpi",
+      "name": "陈皮",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "理气健脾，燥湿化痰",
+      "indication": "脘腹胀满，食少吐泻"
+    },
+    {
+      "id": "banxia",
+      "name": "半夏",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "燥湿化痰，降逆止呕",
+      "indication": "痰多咳喘，呕吐反胃"
+    },
+    {
+      "id": "zhishi",
+      "name": "枳实",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "破气消积，化痰散痞",
+      "indication": "积滞内停，痞满胀痛"
+    },
+    {
+      "id": "guizhi",
+      "name": "桂枝",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "发汗解肌，温通经脉",
+      "indication": "风寒感冒，关节疼痛"
+    },
+    {
+      "id": "chaihu",
+      "name": "柴胡",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "和解表里，疏肝解郁",
+      "indication": "感冒发热，寒热往来"
+    },
+    {
+      "id": "danggui",
+      "name": "当归",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 18
+        }
+      ],
+      "description": "补血活血，调经止痛",
+      "indication": "血虚萎黄，月经不调"
+    },
+    {
+      "id": "shengdi",
+      "name": "生地黄",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 15
+        }
+      ],
+      "description": "清热凉血，养阴生津",
+      "indication": "热入营血，舌绛烦渴"
+    },
+    {
+      "id": "mudanpi",
+      "name": "牡丹皮",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "清热凉血，活血化瘀",
+      "indication": "温毒发斑，夜热早凉"
+    },
+    {
+      "id": "shengma",
+      "name": "升麻",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "发表透疹，清热解毒",
+      "indication": "风热头痛，齿痛口疮"
+    },
+    {
+      "id": "xiangfu",
+      "name": "香附",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "疏肝解郁，理气宽中",
+      "indication": "肝郁气滞，胸胁胀痛"
+    },
+    {
+      "id": "chuanxiong",
+      "name": "川芎",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "活血行气，祛风止痛",
+      "indication": "头痛，胸胁疼痛"
+    },
+    {
+      "id": "xixin",
+      "name": "细辛",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "祛风散寒，通窍止痛",
+      "indication": "风寒头痛，鼻渊齿痛"
+    },
+    {
+      "id": "shegan",
+      "name": "射干",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "清热解毒，消痰利咽",
+      "indication": "咽喉肿痛，痰盛咳喘"
+    },
+    {
+      "id": "sangbaipi",
+      "name": "桑白皮",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "泻肺平喘，利水消肿",
+      "indication": "肺热喘咳，水肿胀满"
+    },
+    {
+      "id": "kuanhong",
+      "name": "款冬花",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "润肺下气，止咳化痰",
+      "indication": "咳嗽气喘"
+    },
+    {
+      "id": "gaoliangjiang",
+      "name": "高良姜",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "温胃散寒，消食止痛",
+      "indication": "脘腹冷痛，呕吐泄泻"
+    },
+    {
+      "id": "ganjiang",
+      "name": "干姜",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "温中散寒，回阳通脉",
+      "indication": "脘腹冷痛，呕吐泄泻"
+    },
+    {
+      "id": "longdan",
+      "name": "龙胆草",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 15
+        }
+      ],
+      "description": "清热燥湿，泻肝胆火",
+      "indication": "湿热黄疸，肝火头痛"
+    },
+    {
+      "id": "zhizi",
+      "name": "栀子",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "泻火除烦，清热利湿",
+      "indication": "热病心烦，湿热黄疸"
+    },
+    {
+      "id": "tianma",
+      "name": "天麻",
+      "type": "herb",
+      "rarity": "rare",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 20
+        }
+      ],
+      "description": "熄风止痉，平抑肝阳",
+      "indication": "头痛眩晕，肢体麻木"
+    },
+    {
+      "id": "gouteng",
+      "name": "钩藤",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 15
+        }
+      ],
+      "description": "清热平肝，熄风定惊",
+      "indication": "肝风内动，惊痫抽搐"
+    },
+    {
+      "id": "shijueming",
+      "name": "石决明",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 18
+        }
+      ],
+      "description": "平肝潜阳，清肝明目",
+      "indication": "肝阳眩晕，目赤肿痛"
+    },
+    {
+      "id": "niuxi",
+      "name": "牛膝",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "逐瘀通经，补肝肾强筋骨",
+      "indication": "腰膝酸痛，下肢痿软"
+    },
+    {
+      "id": "sangjisheng",
+      "name": "桑寄生",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "祛风湿，补肝肾，强筋骨",
+      "indication": "风湿痹痛，腰膝酸软"
+    },
+    {
+      "id": "yinchen",
+      "name": "茵陈",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 15
+        }
+      ],
+      "description": "清利湿热，利胆退黄",
+      "indication": "黄疸尿少，湿温暑湿"
+    },
+    {
+      "id": "dahuang",
+      "name": "大黄",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 18
+        }
+      ],
+      "description": "泻下攻积，清热泻火",
+      "indication": "积滞便秘，血热吐衄"
+    },
+    {
+      "id": "fuzi",
+      "name": "附子",
+      "type": "herb",
+      "rarity": "rare",
+      "qiCost": 3,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 25
+        }
+      ],
+      "description": "回阳救逆，补火助阳",
+      "indication": "亡阳虚脱，肢冷脉微"
+    },
+    {
+      "id": "rougui",
+      "name": "肉桂",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 18
+        }
+      ],
+      "description": "补火助阳，引火归元",
+      "indication": "阳痿宫冷，腰膝冷痛"
+    },
+    {
+      "id": "lurong",
+      "name": "鹿茸",
+      "type": "herb",
+      "rarity": "legendary",
+      "qiCost": 3,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 35
+        }
+      ],
+      "description": "壮肾阳，益精血，强筋骨",
+      "indication": "肾阳不足，阳痿滑精"
+    },
+    {
+      "id": "bajitian",
+      "name": "巴戟天",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 18
+        }
+      ],
+      "description": "补肾阳，强筋骨，祛风湿",
+      "indication": "阳痿遗精，宫冷不孕"
+    },
+    {
+      "id": "roucongrong",
+      "name": "肉苁蓉",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 18
+        }
+      ],
+      "description": "补肾阳，益精血，润肠通便",
+      "indication": "阳痿不孕，腰膝酸软"
+    },
+    {
+      "id": "duzhong",
+      "name": "杜仲",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 15
+        }
+      ],
+      "description": "补肝肾，强筋骨，安胎",
+      "indication": "肾虚腰痛，筋骨无力"
+    },
+    {
+      "id": "shudihuang",
+      "name": "熟地黄",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 20
+        }
+      ],
+      "description": "补血滋阴，益精填髓",
+      "indication": "血虚萎黄，眩晕耳鸣"
+    },
+    {
+      "id": "huangqi",
+      "name": "黄芪",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 20
+        }
+      ],
+      "description": "补气升阳，固表止汗",
+      "indication": "气虚乏力，中气下陷"
+    },
+    {
+      "id": "renshen",
+      "name": "人参",
+      "type": "herb",
+      "rarity": "legendary",
+      "qiCost": 3,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 40
+        }
+      ],
+      "description": "大补元气，复脉固脱",
+      "indication": "气虚欲脱，脉微欲绝"
+    },
+    {
+      "id": "longyanrou",
+      "name": "龙眼肉",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "补益心脾，养血安神",
+      "indication": "气血不足，心悸怔忡"
+    },
+    {
+      "id": "suanzaoren",
+      "name": "酸枣仁",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "养心补肝，宁心安神",
+      "indication": "虚烦不眠，惊悸多梦"
+    },
+    {
+      "id": "lugen",
+      "name": "芦根",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "清热泻火，生津止渴",
+      "indication": "热病烦渴，肺热咳嗽"
+    },
+    {
+      "id": "yiyiren",
+      "name": "薏苡仁",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "利水渗湿，健脾止泻",
+      "indication": "水肿脚气，脾虚泄泻"
+    },
+    {
+      "id": "dongguazi",
+      "name": "冬瓜子",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 8
+        }
+      ],
+      "description": "清肺化痰，排脓利湿",
+      "indication": "肺热咳嗽，肺痈肠痈"
+    },
+    {
+      "id": "taoren",
+      "name": "桃仁",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "活血祛瘀，润肠通便",
+      "indication": "经闭痛经，肺痈肠痈"
+    },
+    {
+      "id": "gualou",
+      "name": "瓜蒌",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "清热化痰，宽胸散结",
+      "indication": "痰热咳嗽，胸痹心痛"
+    },
+    {
+      "id": "xiebai",
+      "name": "薤白",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "通阳散结，行气导滞",
+      "indication": "胸痹心痛，脘腹痞满"
+    },
+    {
+      "id": "shigao",
+      "name": "石膏",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 18
+        }
+      ],
+      "description": "生用清热泻火，除烦止渴",
+      "indication": "外感热病，高热烦渴"
+    },
+    {
+      "id": "zhimu",
+      "name": "知母",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "清热泻火，滋阴润燥",
+      "indication": "热病烦渴，肺热咳嗽"
+    },
+    {
+      "id": "qianghuo",
+      "name": "羌活",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "解表散寒，祛风胜湿",
+      "indication": "风寒感冒，头痛项强"
+    },
+    {
+      "id": "changshan",
+      "name": "常山",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 20
+        }
+      ],
+      "description": "涌吐痰涎，截疟",
+      "indication": "疟疾寒热"
+    },
+    {
+      "id": "caoguo",
+      "name": "草果",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "燥湿温中，截疟除痰",
+      "indication": "寒湿内阻，疟疾寒热"
+    },
+    {
+      "id": "qinghao",
+      "name": "青蒿",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 15
+        }
+      ],
+      "description": "清虚热，除骨蒸，解暑热，截疟",
+      "indication": "温邪伤阴，夜热早凉，疟疾"
+    },
+    {
+      "id": "shichangpu",
+      "name": "石菖蒲",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "开窍豁痰，醒神益智",
+      "indication": "痰蒙清窍，神昏癫痫"
+    },
+    {
+      "id": "danxing",
+      "name": "胆南星",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "清热化痰，熄风定惊",
+      "indication": "痰热咳嗽，中风癫痫"
+    },
+    {
+      "id": "zhuli",
+      "name": "竹沥",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "清热豁痰，定惊利窍",
+      "indication": "痰热咳嗽，中风痰迷"
+    },
+    {
+      "id": "beimu",
+      "name": "贝母",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 15
+        }
+      ],
+      "description": "清热化痰，润肺止咳",
+      "indication": "虚劳咳嗽，肺热燥咳"
+    },
+    {
+      "id": "lingyangjiao",
+      "name": "羚羊角",
+      "type": "herb",
+      "rarity": "legendary",
+      "qiCost": 3,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 35
+        }
+      ],
+      "description": "平肝熄风，清肝明目，清热解毒",
+      "indication": "肝风内动，惊痫抽搐"
+    },
+    {
+      "id": "houpo",
+      "name": "厚朴",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "燥湿消痰，下气除满",
+      "indication": "湿滞伤中，脘痞吐泻"
+    },
+    {
+      "id": "muli",
+      "name": "牡蛎",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "重镇安神，潜阳补阴，软坚散结",
+      "indication": "惊悸失眠，眩晕耳鸣"
+    },
+    {
+      "id": "sangye",
+      "name": "桑叶",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "疏散风热，清肺润燥",
+      "indication": "风热感冒，肺热燥咳"
+    },
+    {
+      "id": "juhua",
+      "name": "菊花",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "散风清热，平肝明目",
+      "indication": "风热感冒，头痛眩晕"
+    },
+    {
+      "id": "shiwei",
+      "name": "石韦",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "利尿通淋，清肺止咳",
+      "indication": "热淋血淋，石淋"
+    },
+    {
+      "id": "haijinsha",
+      "name": "海金沙",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "清利湿热，通淋止痛",
+      "indication": "热淋，石淋，血淋"
+    },
+    {
+      "id": "jinqiancao",
+      "name": "金钱草",
+      "type": "herb",
+      "rarity": "uncommon",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 15
+        }
+      ],
+      "description": "利湿退黄，利尿通淋，解毒消肿",
+      "indication": "黄疸尿赤，石淋"
+    },
+    {
+      "id": "jineijin",
+      "name": "鸡内金",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "消食健胃，涩精止遗，通淋化石",
+      "indication": "食积不消，石淋"
+    },
+    {
+      "id": "cheqianzi",
+      "name": "车前子",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 10
+        }
+      ],
+      "description": "清热利尿，渗湿通淋",
+      "indication": "热淋涩痛，水肿胀满"
+    },
+    {
+      "id": "lujiao",
+      "name": "鹿角",
+      "type": "herb",
+      "rarity": "rare",
+      "qiCost": 3,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 25
+        }
+      ],
+      "description": "温肾阳，强筋骨，行血消肿",
+      "indication": "肾阳不足，阳痿遗精"
+    },
+    {
+      "id": "baishao",
+      "name": "白芍",
+      "type": "herb",
+      "rarity": "common",
+      "qiCost": 1,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "养血调经，敛阴止汗，柔肝止痛",
+      "indication": "血虚萎黄，月经不调"
+    },
+    {
+      "id": "zhuyou",
+      "name": "祝由术",
+      "type": "magic",
+      "rarity": "rare",
+      "qiCost": 0,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 18
+        }
+      ],
+      "description": "以咒语祈祷治病，不消耗真气",
+      "indication": "情志病，心神不宁"
+    },
+    {
+      "id": "fuzhou",
+      "name": "符咒",
+      "type": "magic",
+      "rarity": "common",
+      "qiCost": 0,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 12
+        }
+      ],
+      "description": "画符驱邪治病，不消耗真气",
+      "indication": "邪祟致病，精神恍惚"
+    },
+    {
+      "id": "zhoushui",
+      "name": "咒水",
+      "type": "magic",
+      "rarity": "uncommon",
+      "qiCost": 0,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 15
+        }
+      ],
+      "description": "诵咒加持，以水治病",
+      "indication": "小儿惊风，邪祟"
+    },
+    {
+      "id": "qigu",
+      "name": "气鼓",
+      "type": "magic",
+      "rarity": "rare",
+      "qiCost": 0,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 20
+        }
+      ],
+      "description": "以气治病，不药而愈",
+      "indication": "气机阻滞，经络不通"
+    },
+    {
+      "id": "yinqiaosan",
+      "name": "银翘散",
+      "type": "secret",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 25
+        }
+      ],
+      "description": "辛凉解表，清热解毒，风热感冒主方",
+      "indication": "风热感冒，咽喉肿痛"
+    },
+    {
+      "id": "mahuangtang",
+      "name": "麻黄汤",
+      "type": "secret",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 22
+        }
+      ],
+      "description": "发汗解表，宣肺平喘，风寒感冒主方",
+      "indication": "风寒感冒重症，无汗喘促"
+    },
+    {
+      "id": "guipitang",
+      "name": "归脾汤",
+      "type": "secret",
+      "rarity": "uncommon",
+      "qiCost": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 25
+        }
+      ],
+      "description": "益气补血，健脾养心，心脾两虚主方",
+      "indication": "心悸失眠，体倦食少"
+    },
+    {
+      "id": "longdanxiegan",
+      "name": "龙胆泻肝汤",
+      "type": "secret",
+      "rarity": "rare",
+      "qiCost": 3,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 30
+        }
+      ],
+      "description": "清肝胆实火，泻下焦湿热",
+      "indication": "肝胆实火，胁痛目赤"
+    },
+    {
+      "id": "tianmaouteng",
+      "name": "天麻钩藤饮",
+      "type": "secret",
+      "rarity": "rare",
+      "qiCost": 3,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 30
+        }
+      ],
+      "description": "平肝熄风，清热活血",
+      "indication": "肝阳上亢，头痛眩晕"
+    },
+    {
+      "id": "zhenwu",
+      "name": "真武汤",
+      "type": "secret",
+      "rarity": "rare",
+      "qiCost": 3,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 32
+        }
+      ],
+      "description": "温阳利水，肾阳虚衰水肿主方",
+      "indication": "阳虚水肿，小便不利"
+    },
+    {
+      "id": "suhexiangwan",
+      "name": "苏合香丸",
+      "type": "secret",
+      "rarity": "legendary",
+      "qiCost": 4,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 45
+        }
+      ],
+      "description": "芳香开窍，行气温中，中风急救",
+      "indication": "中风昏迷，寒闭神昏"
+    },
+    {
+      "id": "angongniuhuang",
+      "name": "安宫牛黄丸",
+      "type": "secret",
+      "rarity": "legendary",
+      "qiCost": 4,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 50
+        }
+      ],
+      "description": "清热开窍，豁痰解毒，急救神药",
+      "indication": "热病神昏，中风阳闭"
+    },
+    {
+      "id": "zhiibaodan",
+      "name": "至宝丹",
+      "type": "secret",
+      "rarity": "legendary",
+      "qiCost": 4,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 45
+        }
+      ],
+      "description": "清热开窍，化浊解毒",
+      "indication": "中暑昏厥，中风阳闭"
+    },
+    {
+      "id": "guilingji",
+      "name": "龟龄集",
+      "type": "secret",
+      "rarity": "legendary",
+      "qiCost": 3,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 40
+        }
+      ],
+      "description": "补肾壮阳，益精填髓，壮阳神药",
+      "indication": "肾阳虚衰，阳痿遗精"
+    },
+    {
+      "id": "dabuyuanjian",
+      "name": "大补元煎",
+      "type": "secret",
+      "rarity": "rare",
+      "qiCost": 3,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 35
+        }
+      ],
+      "description": "大补气血，培元固本",
+      "indication": "虚劳重症，气血两虚"
+    },
+    {
+      "id": "dingxianwan",
+      "name": "定痫丸",
+      "type": "secret",
+      "rarity": "rare",
+      "qiCost": 3,
+      "effects": [
+        {
+          "type": "heal",
+          "value": 30
+        }
+      ],
+      "description": "涤痰熄风，开窍定痫",
+      "indication": "痫病发作，痰迷心窍"
+    }
+  ]
+}

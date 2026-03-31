@@ -1,0 +1,292 @@
+{
+  "patients": [
+    {
+      "id": "patient_warrior_01",
+      "name": "铁掌李",
+      "identity": "江湖侠客",
+      "faction": "江湖-白道",
+      "factionDetail": "铁掌帮弟子",
+      "description": "身材魁梧的江湖武人，因与人比武受伤",
+      "stamina": {
+        "initial": 5,
+        "max": 5,
+        "regenPerTurn": "full"
+      },
+      "affinity": {
+        "initial": 0,
+        "min": -100,
+        "max": 100
+      },
+      "stance": {
+        "core": "锄强扶弱",
+        "hiddenMotivation": "寻找失散多年的师弟",
+        "flexibility": 0.3
+      },
+      "gameplay": {
+        "relatedCards": ["herb_danggui", "herb_chuanxiong"],
+        "relatedQuests": ["quest_find_disciple"],
+        "specialMechanics": ["warrior_resilience"],
+        "value": "combat_trainer"
+      },
+      "secrets": {
+        "hiddenSecret": "师弟其实被仇家绑架，正在筹集赎金",
+        "unlockCondition": "affinity >= 40 && cured",
+        "exclusiveSkill": "skill_martial_insight",
+        "reward": ["card_rare_ginseng", "info_enemy_location"]
+      },
+      "chapter1": true
+    },
+    {
+      "id": "patient_merchant_01",
+      "name": "李掌柜",
+      "identity": "药店老板",
+      "faction": "平民",
+      "factionDetail": "京城药商",
+      "description": "精明干练的中年商人，经营着一家小药铺",
+      "stamina": {
+        "initial": 4,
+        "max": 4,
+        "regenPerTurn": "full"
+      },
+      "affinity": {
+        "initial": 10,
+        "min": -100,
+        "max": 100
+      },
+      "stance": {
+        "core": "唯利是图",
+        "hiddenMotivation": "筹集资金救治重病的女儿",
+        "flexibility": 0.4
+      },
+      "gameplay": {
+        "relatedCards": ["herb_renshen", "herb_huangqi"],
+        "relatedQuests": ["quest_daughter_cure"],
+        "specialMechanics": ["merchant_discount"],
+        "value": "information_broker"
+      },
+      "secrets": {
+        "hiddenSecret": "与黑市药商有秘密往来，获取珍稀药材",
+        "unlockCondition": "affinity >= 40 && cured",
+        "exclusiveSkill": "skill_blackmarket_info",
+        "reward": ["card_rare_poison", "info_blackmarket_location"]
+      },
+      "chapter1": true
+    },
+    {
+      "id": "patient_beggar_01",
+      "name": "老乞儿",
+      "identity": "街头乞丐",
+      "faction": "平民",
+      "factionDetail": "京城流浪者",
+      "description": "衣衫褴褛的老者，看似普通却眼神锐利",
+      "stamina": {
+        "initial": 2,
+        "max": 2,
+        "regenPerTurn": "full"
+      },
+      "affinity": {
+        "initial": -10,
+        "min": -100,
+        "max": 100
+      },
+      "stance": {
+        "core": "明哲保身",
+        "hiddenMotivation": "曾是御医，因宫廷斗争隐姓埋名",
+        "flexibility": 0.2
+      },
+      "gameplay": {
+        "relatedCards": ["herb_gancao", "herb_dazao"],
+        "relatedQuests": ["quest_royal_secret"],
+        "specialMechanics": ["beggar_wisdom"],
+        "value": "secret_keeper"
+      },
+      "secrets": {
+        "hiddenSecret": "掌握着失传已久的宫廷秘方",
+        "unlockCondition": "affinity >= 60 && cured",
+        "exclusiveSkill": "skill_royal_recipe",
+        "reward": ["card_legendary_formula", "info_palace_intrigue"]
+      },
+      "chapter1": true
+    },
+    {
+      "id": "patient_farmer_01",
+      "name": "王老实",
+      "identity": "农夫",
+      "faction": "平民",
+      "factionDetail": "城郊农户",
+      "description": "朴实的庄稼人，常年劳作积劳成疾",
+      "stamina": {
+        "initial": 3,
+        "max": 3,
+        "regenPerTurn": "full"
+      },
+      "affinity": {
+        "initial": 0,
+        "min": -100,
+        "max": 100
+      },
+      "stance": {
+        "core": "悬壶济世",
+        "hiddenMotivation": "希望儿子能读书出人头地",
+        "flexibility": 0.5
+      },
+      "gameplay": {
+        "relatedCards": ["herb_baizhu", "herb_fuling"],
+        "relatedQuests": ["quest_son_education"],
+        "specialMechanics": ["farmer_harvest"],
+        "value": "herb_supplier"
+      },
+      "secrets": {
+        "hiddenSecret": "祖上是采药人，知道一处隐秘的药材产地",
+        "unlockCondition": "affinity >= 30 && cured",
+        "exclusiveSkill": "skill_herb_location",
+        "reward": ["card_rare_herb", "info_secret_garden"]
+      },
+      "chapter1": true
+    },
+    {
+      "id": "patient_scholar_01",
+      "name": "周秀才",
+      "identity": "书生",
+      "faction": "平民",
+      "factionDetail": "备考举子",
+      "description": "寒窗苦读的书生，因备考积劳成疾",
+      "stamina": {
+        "initial": 3,
+        "max": 3,
+        "regenPerTurn": "full"
+      },
+      "affinity": {
+        "initial": 5,
+        "min": -100,
+        "max": 100
+      },
+      "stance": {
+        "core": "追求功名",
+        "hiddenMotivation": "其实更想当一名医者",
+        "flexibility": 0.6
+      },
+      "gameplay": {
+        "relatedCards": ["herb_suanzaoren", "herb_baihe"],
+        "relatedQuests": ["quest_scholar_path"],
+        "specialMechanics": ["scholar_insight"],
+        "value": "lore_provider"
+      },
+      "secrets": {
+        "hiddenSecret": "收藏着一本失传的医书残卷",
+        "unlockCondition": "affinity >= 50 && cured",
+        "exclusiveSkill": "skill_ancient_text",
+        "reward": ["card_rare_knowledge", "info_lost_medical_book"]
+      },
+      "chapter1": true
+    },
+    {
+      "id": "patient_clerk_01",
+      "name": "赵小二",
+      "identity": "药店伙计",
+      "faction": "平民",
+      "factionDetail": "李记药铺学徒",
+      "description": "年轻机灵的药店学徒，对医术充满好奇",
+      "stamina": {
+        "initial": 3,
+        "max": 3,
+        "regenPerTurn": "full"
+      },
+      "affinity": {
+        "initial": 15,
+        "min": -100,
+        "max": 100
+      },
+      "stance": {
+        "core": "悬壶济世",
+        "hiddenMotivation": "梦想成为名医",
+        "flexibility": 0.7
+      },
+      "gameplay": {
+        "relatedCards": ["herb_jingjie", "herb_fangfeng"],
+        "relatedQuests": ["quest_apprentice_journey"],
+        "specialMechanics": ["clerk_assistance"],
+        "value": "assistant"
+      },
+      "secrets": {
+        "hiddenSecret": "暗中观察掌柜与黑市交易，知道不少秘密",
+        "unlockCondition": "affinity >= 35 && cured",
+        "exclusiveSkill": "skill_insider_info",
+        "reward": ["card_rare_intel", "info_merchant_secret"]
+      },
+      "chapter1": true
+    },
+    {
+      "id": "patient_official_01",
+      "name": "张大人",
+      "identity": "官府差役",
+      "faction": "官场",
+      "factionDetail": "京城捕快",
+      "description": "威严的官府差役，因追捕逃犯受伤",
+      "stamina": {
+        "initial": 4,
+        "max": 4,
+        "regenPerTurn": "full"
+      },
+      "affinity": {
+        "initial": -5,
+        "min": -100,
+        "max": 100
+      },
+      "stance": {
+        "core": "秉公执法",
+        "hiddenMotivation": "追查一桩涉及高官的贪腐案",
+        "flexibility": 0.2
+      },
+      "gameplay": {
+        "relatedCards": ["herb_tao", "herb_honghua"],
+        "relatedQuests": ["quest_corruption_case"],
+        "specialMechanics": ["official_authority"],
+        "value": "protection_provider"
+      },
+      "secrets": {
+        "hiddenSecret": "掌握着能扳倒三品大员的证据",
+        "unlockCondition": "affinity >= 50 && cured",
+        "exclusiveSkill": "skill_legal_protection",
+        "reward": ["card_rare_authority", "info_corruption_evidence"]
+      },
+      "chapter1": false
+    },
+    {
+      "id": "patient_bandit_01",
+      "name": "独眼龙",
+      "identity": "山贼",
+      "faction": "江湖-黑道",
+      "factionDetail": "黑风寨三当家",
+      "description": "凶悍的山贼头目，因火并受伤",
+      "stamina": {
+        "initial": 4,
+        "max": 4,
+        "regenPerTurn": "full"
+      },
+      "affinity": {
+        "initial": -30,
+        "min": -100,
+        "max": 100
+      },
+      "stance": {
+        "core": "唯利是图",
+        "hiddenMotivation": "想金盆洗手，但怕被仇家追杀",
+        "flexibility": 0.4
+      },
+      "gameplay": {
+        "relatedCards": ["herb_sanqi", "herb_baiji"],
+        "relatedQuests": ["quest_bandit_redemption"],
+        "specialMechanics": ["bandit_threat"],
+        "value": "blackmarket_access"
+      },
+      "secrets": {
+        "hiddenSecret": "知道山寨宝库的位置和开启方法",
+        "unlockCondition": "affinity >= 40 && cured",
+        "exclusiveSkill": "skill_treasure_map",
+        "reward": ["card_rare_treasure", "info_bandit_vault"]
+      },
+      "chapter1": false
+    }
+  ]
+}

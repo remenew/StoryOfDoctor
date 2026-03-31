@@ -1,0 +1,27 @@
+{
+  "name": "medgod",
+  "version": "0.1.0",
+  "description": "江湖神医卡牌游戏 - A Chinese medicine themed card game",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "iconv-lite": "^0.7.2",
+    "phaser": "^3.80.1",
+    "seedrandom": "^3.0.5"
+  },
+  "devDependencies": {
+    "vite": "^5.4.11"
+  },
+  "keywords": [
+    "game",
+    "card-game",
+    "phaser",
+    "chinese-medicine"
+  ],
+  "author": "",
+  "license": "MIT"
+}

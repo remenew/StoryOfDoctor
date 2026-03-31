@@ -1,0 +1,190 @@
+{
+  "external": [
+    {
+      "id": "wind",
+      "name": "风邪·百病之长",
+      "baseDamage": 6,
+      "effect": "游走侵袭",
+      "debuff": {
+        "type": "limb_numb",
+        "duration": 2
+      }
+    },
+    {
+      "id": "cold",
+      "name": "寒邪·阴凝之毒",
+      "baseDamage": 7,
+      "effect": "凝滞经络",
+      "debuff": {
+        "type": "reduce_healing",
+        "amount": 0.2
+      }
+    },
+    {
+      "id": "summer_heat",
+      "name": "暑邪·盛夏烈焰",
+      "baseDamage": 9,
+      "effect": "耗气伤津",
+      "debuff": {
+        "type": "double_if_untreated"
+      }
+    },
+    {
+      "id": "damp",
+      "name": "湿邪·黏滞之患",
+      "baseDamage": 6,
+      "effect": "缠绵难去",
+      "debuff": {
+        "type": "dot",
+        "amount": 3,
+        "duration": 3
+      }
+    },
+    {
+      "id": "dry",
+      "name": "燥邪·伤津之灵",
+      "baseDamage": 5,
+      "effect": "燥灼肺津",
+      "debuff": {
+        "type": "dry_cough"
+      }
+    },
+    {
+      "id": "fire",
+      "name": "火邪·燔灼之炎",
+      "baseDamage": 8,
+      "effect": "炎上动血",
+      "debuff": {
+        "type": "bleed_chance",
+        "chance": 0.3,
+        "bonus": 3
+      }
+    }
+  ],
+  "emotional": [
+    {
+      "id": "joy",
+      "name": "喜·狂喜伤神",
+      "baseDamage": 5,
+      "effect": "心神涣散",
+      "debuff": {
+        "type": "trigger_rate_up",
+        "amount": 0.15
+      }
+    },
+    {
+      "id": "anger",
+      "name": "怒·盛怒伤肝",
+      "baseDamage": 8,
+      "effect": "肝气郁结",
+      "debuff": {
+        "type": "qi_stasis",
+        "duration": 3
+      }
+    },
+    {
+      "id": "worry",
+      "name": "忧·久忧伤肺",
+      "baseDamage": 6,
+      "effect": "肺失宣降",
+      "debuff": {
+        "type": "qi_drain",
+        "amount": 2
+      }
+    },
+    {
+      "id": "pensiveness",
+      "name": "思·过度伤脾",
+      "baseDamage": 7,
+      "effect": "脾失运化",
+      "debuff": {
+        "type": "no_nutrition",
+        "duration": 4
+      }
+    },
+    {
+      "id": "grief",
+      "name": "悲·大悲伤气",
+      "baseDamage": 6,
+      "effect": "肺气耗损",
+      "debuff": {
+        "type": "reduce_attack",
+        "amount": 0.3
+      }
+    },
+    {
+      "id": "fear",
+      "name": "恐·惊恐伤肾",
+      "baseDamage": 9,
+      "effect": "肾精亏虚",
+      "debuff": {
+        "type": "no_defense",
+        "duration": 5
+      }
+    },
+    {
+      "id": "fright",
+      "name": "惊·猝惊伤神",
+      "baseDamage": 7,
+      "effect": "心神不宁",
+      "debuff": {
+        "type": "spirit_drain",
+        "amount": 3
+      }
+    }
+  ],
+  "behavioral": [
+    {
+      "id": "diet",
+      "name": "饮食不节·脾胃之患",
+      "baseDamage": 6,
+      "effect": "食积内停",
+      "debuff": {
+        "type": "no_nutrition",
+        "duration": 3
+      }
+    },
+    {
+      "id": "overwork",
+      "name": "劳逸失度·正气耗损",
+      "baseDamage": 5,
+      "effect": "气血亏虚",
+      "debuff": {
+        "type": "defense_down",
+        "amount": 5,
+        "duration": 3
+      }
+    },
+    {
+      "id": "trauma",
+      "name": "外伤·皮肉之伤",
+      "baseDamage": 10,
+      "effect": "瘀血内阻",
+      "debuff": {
+        "type": "bleed_dot"
+      }
+    },
+    {
+      "id": "insect_bite",
+      "name": "虫兽所伤·毒邪侵袭",
+      "baseDamage": 11,
+      "effect": "毒邪内攻",
+      "debuff": {
+        "type": "poison",
+        "amount": 5,
+        "duration": 2
+      }
+    },
+    {
+      "id": "sexual_excess",
+      "name": "房劳过度·肾精耗竭",
+      "baseDamage": 8,
+      "effect": "肾虚精亏",
+      "debuff": {
+        "type": "regen_reduce",
+        "amount": 0.5,
+        "duration": 5
+      }
+    }
+  ]
+}
