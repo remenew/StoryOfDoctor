@@ -8,6 +8,7 @@ import { BootScene } from './scenes/BootScene.js';
 import { MenuScene } from './scenes/MenuScene.js';
 import { MapScene } from './scenes/MapScene.js';
 import { BattleScene } from './scenes/BattleScene.js';
+import StoryScene from './scenes/StoryScene.js';
 
 // 游戏配置
 const config = {
@@ -20,7 +21,7 @@ const config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
-  scene: [BootScene, MenuScene, MapScene, BattleScene],
+  scene: [BootScene, MenuScene, MapScene, BattleScene, StoryScene],
   physics: {
     default: 'arcade',
     arcade: {

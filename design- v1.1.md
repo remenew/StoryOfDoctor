@@ -35,6 +35,31 @@
 - `diseases.json`: 合并疾病-草药关联数据
 - `disease-cards.json`: 已删除（数据已合并）
 
+### v1.2 (2026-04-01)
+
+#### 新增：Ink 叙事系统
+1. **引入 Ink 脚本语言**
+   - 使用 inkjs 运行时驱动故事
+   - 支持分支叙事、变量、条件逻辑
+   - 与游戏系统深度集成（战斗触发、属性修改）
+
+2. **故事系统架构**
+   - `InkStoryManager`: 管理故事状态和运行时
+   - `StoryUI`: 对话显示和选项交互
+   - 故事文件: `.ink` 格式，支持 INCLUDE 模块化
+
+3. **故事触发点**
+   - 开场剧情（MenuScene → StoryScene）
+   - 地点事件（MapScene 进入地点时）
+   - 战斗前后（BattleScene 剧情）
+   - 结局分支（ResultsScene 多结局）
+
+#### 新增文件
+- `src/story/`: 故事脚本目录
+- `src/systems/InkStoryManager.js`: 故事管理器
+- `src/ui/StoryUI.js`: 故事UI组件
+- `src/scenes/StoryScene.js`: 故事场景
+
 ---
 
 ## 一、项目定位
@@ -1606,6 +1631,7 @@ ESC：取消选中
 | 随机数 | seedrandom（可复现 run） |
 | 持久化 | localStorage |
 | 部署 | Vercel / GitHub Pages（push to main 自动部署）|
+| 叙事脚本 | Ink + inkjs |
 
 ### 项目结构
 
@@ -1719,6 +1745,288 @@ CI/CD:
 ---
 
 *文档版本：v1.0 — 整合自 2026-03-25 + 2026-03-29 两轮 office hours*
+
+---
+
+## 十九、Ink 叙事系统
+
+### 19.1 Ink 简介
+
+Ink 是 Inkle Studios 开发的叙事脚本语言，专为游戏设计：
+- **轻量级**：纯文本格式，易于版本控制
+- **分支叙事**：支持选择、条件、循环
+- **变量系统**：可读写变量，与游戏状态同步
+- **外部函数**：可调用 JavaScript 函数
+- **运行时**：inkjs（官方 JS 运行时）
+
+### 19.2 系统架构
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    InkStoryManager                          │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │  inkjs.Compiler  →  inkjs.Story                    │   │
+│  │  (编译 .ink 文件)    (运行时实例)                   │   │
+│  └─────────────────────────────────────────────────────┘   │
+│  + loadStory(inkFile)      → 加载故事文件                  │
+│  + continue()              → 获取下一段文本                │
+│  + getChoices()            → 获取选项列表                  │
+│  + chooseChoice(index)     → 选择选项                      │
+│  + getVariable(name)       → 获取变量值                    │
+│  + setVariable(name, val)  → 设置变量值                    │
+│  + bindExternalFunction()  → 绑定外部函数                  │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                      StoryUI (Phaser)                       │
+│  - 对话文本显示区域                                          │
+│  - 角色立绘显示                                              │
+│  - 选项按钮列表                                              │
+│  - 历史记录滚动                                              │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 19.3 文件结构
+
+```
+src/
+├── story/
+│   ├── main.ink              # 主故事入口
+│   ├── chapter1.ink          # 第一章故事
+│   ├── chapter2.ink          # 第二章故事
+│   ├── characters.ink        # 角色对话库
+│   ├── events.ink            # 随机事件库
+│   └── common.ink            # 公共函数和变量
+│
+├── systems/
+│   └── InkStoryManager.js    # 故事管理器
+│
+├── ui/
+│   └── StoryUI.js            # 故事UI组件
+│
+└── scenes/
+    └── StoryScene.js         # 故事场景
+```
+
+### 19.4 Ink 脚本示例
+
+```ink
+// chapter1.ink
+INCLUDE common.ink
+
+// 故事变量
+VAR player_name = "游方郎中"
+VAR reputation = 0
+VAR chapter1_patients_healed = 0
+VAR current_location = ""
+
+// 外部函数声明（由 JavaScript 实现）
+EXTERNAL getPatientName()
+EXTERNAL getPatientsCount()
+EXTERNAL startBattle(patientId)
+EXTERNAL modifyReputation(amount)
+
+-> chapter1_start
+
+=== chapter1_start ===
+你来到了村口，看到几位村民神色焦急。
+
+* [询问情况] -> ask_villagers
+* [直接寻找病人] -> find_patients
+* [先休息一下] -> rest_first
+
+=== ask_villagers ===
+村民：大夫！您可来了，{getPatientName()}病得厉害！
+
+~ modifyReputation(1)
+
+-> enter_location
+
+=== find_patients ===
+你环顾四周，发现了等待治疗的病人。
+
+-> enter_location
+
+=== rest_first ===
+你找了个地方坐下，喝了一口水。
+
+~ modifyReputation(-1)
+
+-> enter_location
+
+=== enter_location ===
+{chapter1_patients_healed >= 2: -> chapter1_complete}
+
+你看到 {getPatientsCount()} 位病人等待治疗。
+
++ [治疗病人] -> start_patient_battle
++ [先去其他地方] -> return_to_map
+
+=== start_patient_battle ===
+~ temp patient_id = getPatientName()
+
+你决定为病人诊治...
+
+-> BATTLE(patient_id)
+
+= battle_won
+~ chapter1_patients_healed += 1
+~ modifyReputation(2)
+
+病人感激地看着你：多谢大夫救命之恩！
+
+-> enter_location
+
+= battle_lost
+病人叹息：看来我的病难治啊...
+
+-> enter_location
+
+=== chapter1_complete ===
+第一章完成！你的名声开始在附近传开。
+
+~ modifyReputation(5)
+
+-> END
+
+=== return_to_map ===
+-> END
+```
+
+### 19.5 与游戏系统集成
+
+#### 19.5.1 战斗触发
+```javascript
+// InkStoryManager.js
+bindExternalFunction('startBattle', (patientId) => {
+  this.scene.start('BattleScene', {
+    patientId: patientId,
+    // ... 其他参数
+  });
+});
+```
+
+#### 19.5.2 属性修改
+```javascript
+// InkStoryManager.js
+bindExternalFunction('modifyReputation', (amount) => {
+  const playerAttr = this.scene.playerAttributes;
+  playerAttr.modifyReputation(amount);
+});
+```
+
+#### 19.5.3 数据获取
+```javascript
+// InkStoryManager.js
+bindExternalFunction('getPatientName', () => {
+  const location = this.scene.currentLocation;
+  return location.patients[0]?.name || '未知病人';
+});
+```
+
+### 19.6 故事触发点
+
+| 场景 | 触发时机 | 故事文件 |
+|------|---------|---------|
+| MenuScene | 点击"开始游戏" | main.ink → intro |
+| MapScene | 进入地点时 | chapter1.ink → location_event |
+| MapScene | 选择病人前 | chapter1.ink → patient_dialogue |
+| BattleScene | 战斗开始前 | chapter1.ink → battle_intro |
+| BattleScene | 战斗胜利后 | chapter1.ink → battle_won |
+| BattleScene | 战斗失败后 | chapter1.ink → battle_lost |
+| ResultsScene | 章节完成 | chapter1.ink → chapter_complete |
+
+### 19.7 UI 规格
+
+**故事场景布局（960×640px）**：
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  角色立绘区（左侧 200px）                                     │
+│  ┌─────────────────┐  ┌──────────────────────────────────┐ │
+│  │                 │  │  对话文本区                       │ │
+│  │   [角色立绘]     │  │  ─────────────────────────────   │ │
+│  │                 │  │  对话内容...                      │ │
+│  │                 │  │                                  │ │
+│  │                 │  │                                  │ │
+│  └─────────────────┘  └──────────────────────────────────┘ │
+│                       ┌──────────────────────────────────┐ │
+│                       │  选项按钮区                       │ │
+│                       │  [选项1] [选项2] [选项3]          │ │
+│                       └──────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**样式规范**：
+- 背景：#f5f1e8（宣纸色）
+- 对话文本：#1a1a1a，16px，Noto Serif SC
+- 选项按钮：#1a1a1a 背景，白字，hover #333
+- 角色名：#c41e3a（朱砂红），14px bold
+
+### 19.8 开发工作流
+
+1. **编写 Ink 脚本**：在 `src/story/` 目录下创建 `.ink` 文件
+2. **编译**：运行 `node scripts/compile-ink.mjs` 将 `.ink` 编译为 JSON
+3. **测试**：在 StoryScene 中加载测试
+4. **集成**：绑定外部函数，与游戏系统连接
+
+### 19.9 工具链
+
+| 工具 | 用途 | 安装/使用 |
+|------|------|------|
+| inkjs | JS 运行时 | `npm install inkjs` |
+| compile-ink.mjs | 自定义编译脚本 | `node scripts/compile-ink.mjs` |
+| Inky | 桌面编辑器（可选）| 用于可视化编辑 |
+
+### 19.10 实现状态
+
+**已完成：**
+- ✅ `InkStoryManager.js` - 故事管理器，封装 inkjs 运行时
+- ✅ `StoryUI.js` - 对话UI组件，支持打字机效果和选项
+- ✅ `StoryScene.js` - 故事场景，整合管理器和UI
+- ✅ `main.ink`, `chapter1.ink`, `common.ink` - 故事脚本
+- ✅ `compile-ink.mjs` - 编译脚本，将 .ink 转为 JSON
+- ✅ 外部函数绑定（战斗触发、属性修改、数据获取、加载存档）
+- ✅ MapScene 集成（第一个地点触发开场故事）
+- ✅ 故事与地图整合流程
+
+**待实现：**
+- 🔄 BattleScene 战斗前后剧情
+- 🔄 更多地点的故事事件
+- 🔄 结局分支剧情
+
+### 19.11 故事与地图整合流程
+
+**新游戏流程：**
+1. 点击"开始游戏" → 进入 MapScene（显示4个地点节点）
+2. 在第一个地点（村口）→ 自动触发开场故事（StoryScene）
+3. 故事结束后 → 返回 MapScene，标记 `storyCompleted = true`
+4. 玩家可以继续选择地点治疗病人
+
+**数据流程：**
+```
+MenuScene.startGame()
+    ↓
+MapScene.init() → storyCompleted = false
+    ↓
+MapScene.create() → 检测到第一个地点且故事未完成
+    ↓
+MapScene._playIntroStory()
+    ↓
+StoryScene (chapter1_start)
+    ↓
+StoryScene._returnToMap() → 传递 returnData
+    ↓
+MapScene.init(data.fromStory) → storyCompleted = true
+    ↓
+玩家继续游戏
+```
+
+**关键状态：**
+- `MapScene.storyCompleted`: 标记第一章开场故事是否完成
+- `MapScene._playIntroStory()`: 加载并播放开场故事
+- `StoryScene.returnData`: 返回时传递给 MapScene 的数据
 
 ---
 

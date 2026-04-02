@@ -25,18 +25,17 @@ export class BattleScene extends Phaser.Scene {
   }
 
   init(data) {
-    // ── Accept new MapScene contract OR legacy level contract ──────
-    // New:    { nodeIndex, diseaseId, runSeed, currentHp, selectedSkills, patientId }
-    // Legacy: { level: { patientHealth, targetHealth, diseaseId, … } }
-    // Dev stub (TODO #14): empty data → use hardcoded test values
-    if (data.diseaseId !== undefined) {
-      // New contract from MapScene
+    // 统一契约：来自 MapScene
+    // { locationId, patientId, diseaseId, runSeed, currentHp }
+    
+    if (data.locationId && data.patientId && data.diseaseId) {
+      // 标准契约
       this.runSeed    = data.runSeed;
-      this.nodeIndex  = data.nodeIndex;
-      this.currentRunHp = data.currentHp ?? 100;
-      this.patientId = data.patientId;  // 新增：病人ID
+      this.locationId = data.locationId;
+      this.patientId  = data.patientId;
+      this.currentHp  = data.currentHp ?? 100;
 
-      // Use disease's own baseHealth/targetHealth (each battle is a fresh patient)
+      // 获取疾病数据
       const diseasesData = this.registry.get('diseasesData');
       const diseaseEntry = diseasesData?.diseases?.find(d => d.id === data.diseaseId);
       
@@ -50,26 +49,18 @@ export class BattleScene extends Phaser.Scene {
         patientHealth: diseaseEntry?.baseHealth   ?? 100,
         targetHealth:  diseaseEntry?.targetHealth ?? 200,
         startingDeck:  CHAPTER1_STARTER_DECK,
-        patientConfig: patientEntry,  // 新增：完整病人配置
+        patientConfig: patientEntry || this.getDefaultPatientConfig(),
       };
-    } else if (data.level) {
-      // Legacy contract (MenuScene direct launch, keep backward compat)
-      this.runSeed   = String(Date.now());
-      this.nodeIndex = 0;
-      this.levelData = data.level;
-      // 为兼容旧数据，创建默认病人配置
-      if (!this.levelData.patientConfig) {
-        this.levelData.patientConfig = this.getDefaultPatientConfig();
-      }
     } else {
-      // Dev stub — standalone testing without MapScene
+      // 开发测试模式
+      console.warn('[BattleScene] 使用开发测试模式');
       this.runSeed      = 'dev-stub';
-      this.nodeIndex    = 0;
-      this.currentRunHp = 100;
+      this.locationId   = 'dev_location';
+      this.patientId    = 'patient_farmer_01';
+      this.currentHp    = 100;
+      
       const diseasesDataDev = this.registry.get('diseasesData');
       const diseaseEntryDev = diseasesDataDev?.diseases?.find(d => d.id === 'lung_0000');
-      
-      // 使用默认病人
       const defaultPatient = this.getDefaultPatientConfig();
       
       this.levelData = {
@@ -1239,22 +1230,24 @@ export class BattleScene extends Phaser.Scene {
 
     if (isVictory) {
       // "继续旅程" — return to MapScene with victory data
+      // 治疗成功，病人disease置空
       this._resultButton(width / 2 + 72, btnY, '继续旅程 →', true, () => {
         this.scene.start('MapScene', {
-          nodeIndex:   this.nodeIndex,
-          remainingHp: remainingHp,
-          patientData: patientData,  // 传递病人数据
+          locationId:   this.locationId || 'loc_chapter_1_0',
+          patientId:    this.patientId,
+          remainingHp:  remainingHp,
         });
       });
     } else {
       // "再试一次" — restart same battle
       this._resultButton(width / 2 + 72, btnY, '再试一次', true, () => {
         this.scene.start('BattleScene', {
-          nodeIndex:  this.nodeIndex,
-          diseaseId:  this.levelData.diseaseId,
-          runSeed:    this.runSeed,
-          currentHp:  this.levelData.patientHealth,
-          patientId:  this.levelData.patientId,
+          locationId:   this.locationId,
+          patientId:    this.patientId,
+          patientName:  this.patientName,
+          diseaseId:    this.levelData.diseaseId,
+          runSeed:      this.runSeed,
+          currentHp:    this.levelData.patientHealth,
         });
       });
     }

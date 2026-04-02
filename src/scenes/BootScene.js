@@ -7,6 +7,7 @@ import cardsData from '../config/cards.json';
 import diseasesData from '../config/diseases.json';
 import combosData from '../config/combos.json';
 import levelsData from '../config/levels.json';
+import locationsData from '../config/locations.json';
 
 export class BootScene extends Phaser.Scene {
   constructor() {
@@ -32,6 +33,7 @@ export class BootScene extends Phaser.Scene {
     this.registry.set('diseasesData', diseasesData);
     this.registry.set('combosData', combosData);
     this.registry.set('levelsData', levelsData);
+    this.registry.set('locationsData', locationsData);
 
     // 检查是否有保存的游戏
     const savedGame = this.checkSavedGame();

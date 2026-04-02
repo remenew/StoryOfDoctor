@@ -49,11 +49,14 @@ export class Patient {
       value: 'none'
     };
     
+    // 疾病属性
+    this.disease = config.disease || null;  // 疾病ID，治疗成功后置空
+    
     // 状态属性
     this.status = config.status || {
-      healthState: 'diseased',
-      diseaseType: '',
-      diseaseSeverity: 'moderate',
+      healthState: this.disease ? 'diseased' : 'healthy',
+      diseaseType: this.disease || '',
+      diseaseSeverity: config.diseaseSeverity || 'moderate',
       treatmentHistory: [],
       dynamicEffects: []
     };
@@ -468,6 +471,105 @@ export class Patient {
     this.affinityHistory = data.affinityHistory || [];
     this.stanceRevealed = data.stanceRevealed || false;
     this.secretsRevealed = data.secretsRevealed || false;
+    if (data.status) {
+      this.status = { ...this.status, ...data.status };
+    }
+    
+    this.updateHealthBar();
+    this.updateStaminaDisplay();
+    if (this.affinityText) {
+      this.affinityText.setText(`好感度: ${this.getAffinityLabel()} (${this.affinity})`);
+      this.affinityText.setColor(this.getAffinityColor());
+    }
+  }
+
+  /**
+   * 检查病人是否已治愈
+   * @returns {boolean} 是否已治愈
+   */
+  isHealed() {
+    return this.disease === null;
+  }
+
+  /**
+   * 治疗病人（治疗成功后调用）
+   * 将 disease 置空，更新状态为健康
+   * @returns {boolean} 是否成功治疗
+   */
+  heal() {
+    if (this.disease === null) {
+      return false; // 已经治愈
+    }
+    
+    // 记录治疗历史
+    this.status.treatmentHistory.push({
+      disease: this.disease,
+      result: 'healed',
+      timestamp: Date.now()
+    });
+    
+    // 清空疾病
+    this.disease = null;
+    this.status.healthState = 'healthy';
+    this.status.diseaseType = '';
+    
+    // 增加好感度
+    this.modifyAffinity(10, '成功治愈疾病');
+    
+    return true;
+  }
+
+  /**
+   * 设置病人疾病
+   * @param {string} diseaseId - 疾病ID
+   * @param {string} severity - 严重程度（mild/moderate/severe/critical）
+   */
+  setDisease(diseaseId, severity = 'moderate') {
+    this.disease = diseaseId;
+    this.status.healthState = 'diseased';
+    this.status.diseaseType = diseaseId;
+    this.status.diseaseSeverity = severity;
+  }
+
+  /**
+   * 获取病人当前疾病ID
+   * @returns {string|null} 疾病ID或null
+   */
+  getDisease() {
+    return this.disease;
+  }
+
+  /**
+   * 获取病人数据（用于保存）- 更新版本
+   * @returns {object} 病人数据
+   */
+  getData() {
+    return {
+      id: this.id,
+      name: this.name,
+      health: this.health,
+      stamina: this.stamina,
+      affinity: this.affinity,
+      affinityHistory: this.affinityHistory,
+      stanceRevealed: this.stanceRevealed,
+      secretsRevealed: this.secretsRevealed,
+      status: this.status,
+      disease: this.disease  // 新增：保存疾病信息
+    };
+  }
+
+  /**
+   * 从数据恢复病人状态 - 更新版本
+   * @param {object} data - 病人数据
+   */
+  loadData(data) {
+    this.health = data.health || this.health;
+    this.stamina = data.stamina || this.stamina;
+    this.affinity = data.affinity || this.affinity;
+    this.affinityHistory = data.affinityHistory || [];
+    this.stanceRevealed = data.stanceRevealed || false;
+    this.secretsRevealed = data.secretsRevealed || false;
+    this.disease = data.disease || null;  // 新增：恢复疾病信息
     if (data.status) {
       this.status = { ...this.status, ...data.status };
     }

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "iconv-lite": "^0.7.2",
+    "inkjs": "^2.4.0",
     "phaser": "^3.80.1",
     "seedrandom": "^3.0.5"
   },

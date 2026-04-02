@@ -1,0 +1,166 @@
+{
+  "meta": {
+    "version": "2.1.0",
+    "description": "地点-病人关联配置，使用patientRefs引用病人数据"
+  },
+  "chapters": [
+    {
+      "id": "chapter_1",
+      "name": "初入江湖",
+      "description": "常见病诊治，积累经验",
+      "unlockCondition": null
+    },
+    {
+      "id": "chapter_2",
+      "name": "小有名气",
+      "description": "少发病诊治，医术精进",
+      "unlockCondition": "chapter_1_complete"
+    },
+    {
+      "id": "chapter_3",
+      "name": "名震一方",
+      "description": "罕见病诊治，挑战疑难",
+      "unlockCondition": "chapter_2_complete"
+    },
+    {
+      "id": "chapter_4",
+      "name": "神医之路",
+      "description": "极难病症，起死回生",
+      "unlockCondition": "chapter_3_complete"
+    }
+  ],
+  "locations": [
+    {
+      "id": "loc_chapter_1_0",
+      "chapter": "chapter_1",
+      "name": "村口",
+      "description": "这里有2位病人等待治疗",
+      "type": "hard",
+      "patientRefs": ["patient_farmer_01", "patient_scholar_01"],
+      "diseaseIds": ["lung_0000", "lung_0001"],
+      "position": { "x": 200, "y": 100 },
+      "reward": { "cards": ["yinqiaosan"], "gold": 50 }
+    },
+    {
+      "id": "loc_chapter_1_1",
+      "chapter": "chapter_1",
+      "name": "集市",
+      "description": "这里有2位病人等待治疗",
+      "type": "hard",
+      "patientRefs": ["patient_merchant_01", "patient_clerk_01"],
+      "diseaseIds": ["lung_0005", "spleen_0083"],
+      "position": { "x": 600, "y": 100 },
+      "reward": { "cards": ["huangqi"], "gold": 60 }
+    },
+    {
+      "id": "loc_chapter_1_2",
+      "chapter": "chapter_1",
+      "name": "客栈",
+      "description": "这里有1位病人等待治疗",
+      "type": "hard",
+      "patientRefs": ["patient_warrior_01"],
+      "diseaseIds": ["heart_0040"],
+      "position": { "x": 200, "y": 250 },
+      "reward": { "cards": ["guipitang"], "gold": 70 }
+    },
+    {
+      "id": "loc_chapter_2_3",
+      "chapter": "chapter_2",
+      "name": "茶馆",
+      "description": "这里有2位病人等待治疗",
+      "type": "hard",
+      "patientRefs": ["patient_beggar_01", "patient_official_01"],
+      "diseaseIds": ["limb_0173", "spleen_0084"],
+      "position": { "x": 600, "y": 250 },
+      "reward": { "cards": ["tianma"], "gold": 80 }
+    },
+    {
+      "id": "loc_chapter_2_4",
+      "chapter": "chapter_2",
+      "name": "县城",
+      "description": "这里有2位病人等待治疗",
+      "type": "hard",
+      "patientRefs": ["patient_bandit_01", "patient_scholar_01"],
+      "diseaseIds": ["qi_0140", "brain_0068"],
+      "position": { "x": 200, "y": 400 },
+      "reward": { "cards": ["longdan"], "gold": 90 }
+    },
+    {
+      "id": "loc_chapter_2_5",
+      "chapter": "chapter_2",
+      "name": "药铺",
+      "description": "这里有1位病人等待治疗",
+      "type": "hard",
+      "patientRefs": ["patient_clerk_01"],
+      "diseaseIds": ["heart_0056"],
+      "position": { "x": 600, "y": 400 },
+      "reward": { "cards": ["guipitang"], "gold": 100 }
+    },
+    {
+      "id": "loc_chapter_3_6",
+      "chapter": "chapter_3",
+      "name": "寺庙",
+      "description": "这里有2位病人等待治疗",
+      "type": "hard",
+      "patientRefs": ["patient_farmer_01", "patient_warrior_01"],
+      "diseaseIds": ["lung_0012", "heart_0054"],
+      "position": { "x": 200, "y": 550 },
+      "reward": { "cards": ["beimu"], "gold": 120 }
+    },
+    {
+      "id": "loc_chapter_3_7",
+      "chapter": "chapter_3",
+      "name": "山庄",
+      "description": "这里有2位病人等待治疗",
+      "type": "hard",
+      "patientRefs": ["patient_merchant_01", "patient_beggar_01"],
+      "diseaseIds": ["spleen_0104", "kidney_0121"],
+      "position": { "x": 600, "y": 550 },
+      "reward": { "cards": ["shijueming"], "gold": 130 }
+    },
+    {
+      "id": "loc_chapter_3_8",
+      "chapter": "chapter_3",
+      "name": "府城",
+      "description": "这里有1位病人等待治疗",
+      "type": "hard",
+      "patientRefs": ["patient_official_01"],
+      "diseaseIds": ["kidney_0121"],
+      "position": { "x": 200, "y": 700 },
+      "reward": { "cards": ["fuzi"], "gold": 130 }
+    },
+    {
+      "id": "loc_chapter_4_9",
+      "chapter": "chapter_4",
+      "name": "御医院",
+      "description": "这里有2位病人等待治疗",
+      "type": "hard",
+      "patientRefs": ["patient_warrior_01", "patient_merchant_01"],
+      "diseaseIds": ["lung_0028", "heart_0047"],
+      "position": { "x": 600, "y": 700 },
+      "reward": { "cards": ["renshen"], "gold": 150 }
+    },
+    {
+      "id": "loc_chapter_4_10",
+      "chapter": "chapter_4",
+      "name": "皇宫",
+      "description": "这里有2位病人等待治疗",
+      "type": "hard",
+      "patientRefs": ["patient_scholar_01", "patient_farmer_01"],
+      "diseaseIds": ["brain_0078", "lung_0034"],
+      "position": { "x": 200, "y": 850 },
+      "reward": { "cards": ["angongniuhuang"], "gold": 200 }
+    },
+    {
+      "id": "loc_chapter_4_11",
+      "chapter": "chapter_4",
+      "name": "江湖",
+      "description": "这里有1位病人等待治疗",
+      "type": "hard",
+      "patientRefs": ["patient_bandit_01"],
+      "diseaseIds": ["lung_0034"],
+      "position": { "x": 600, "y": 850 },
+      "reward": { "cards": ["dabuyuanjian"], "gold": 200 }
+    }
+  ]
+}

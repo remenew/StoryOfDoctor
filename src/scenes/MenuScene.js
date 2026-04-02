@@ -100,9 +100,11 @@ export class MenuScene extends Phaser.Scene {
     // Generate a run seed from the current timestamp
     const runSeed = String(Date.now());
 
+    // 直接进入地图场景，开场白在MapScene第一地点显示
     this.scene.start('MapScene', {
-      runSeed,
+      runSeed: runSeed,
       startHp: 100,
+      showIntro: true  // 标记需要显示开场白
     });
   }
 
