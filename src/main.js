@@ -9,6 +9,7 @@ import { MenuScene } from './scenes/MenuScene.js';
 import { MapScene } from './scenes/MapScene.js';
 import { BattleScene } from './scenes/BattleScene.js';
 import StoryScene from './scenes/StoryScene.js';
+import InkPlugin from './plugins/InkPlugin.js';
 
 // 游戏配置
 const config = {
@@ -27,6 +28,17 @@ const config = {
     arcade: {
       debug: false
     }
+  },
+  // 注册全局插件
+  plugins: {
+    global: [
+      {
+        key: 'InkPlugin',
+        plugin: InkPlugin,
+        start: true,
+        mapping: 'ink'
+      }
+    ]
   }
 };
 

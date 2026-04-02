@@ -1,14 +1,17 @@
 /**
  * StoryScene - 故事场景
  * 
- * 用于显示Ink叙事内容，处理对话、选项和故事流程
- * 支持两种模式：
- * - intro: 开场白模式，显示静态文本，点击后返回地图
- * - story: 完整故事模式，支持选项和分支
+ * 使用InkPlugin插件显示Ink叙事内容
+ * 处理对话、选项和故事流程
+ * 
+ * Init data contracts
+ * ───────────────────
+ *   FROM MenuScene:   { storyData: Object, mode: 'intro'|'story', startKnot: string }
+ *   FROM MapScene:    { storyData: Object, mode: 'story', returnScene: string }
+ *   FROM BattleScene: { storyState: string, returnScene: string }
  */
 
 import Phaser from 'phaser';
-import InkStoryManager from '../systems/InkStoryManager.js';
 import StoryUI from '../ui/StoryUI.js';
 
 /**
@@ -21,13 +24,29 @@ export default class StoryScene extends Phaser.Scene {
   constructor(config = {}) {
     super({ key: 'StoryScene', ...config });
 
-    this.storyManager = null;
+    /** @type {InkPlugin|null} Ink插件实例 */
+    this.ink = null;
+
+    /** @type {StoryUI|null} UI实例 */
     this.storyUI = null;
+
+    /** @type {Object|null} 故事数据 */
     this.storyData = null;
-    this.returnScene = null;
-    this.mode = 'story'; // 'intro' 或 'story'
+
+    /** @type {string} 返回场景 */
+    this.returnScene = 'MapScene';
+
+    /** @type {string} 模式：intro/story */
+    this.mode = 'story';
+
+    /** @type {string|null} 起始节点 */
     this.startKnot = null;
-    this.returnData = null;
+
+    /** @type {Object} 返回数据 */
+    this.returnData = {};
+
+    /** @type {string|null} 保存的故事状态 */
+    this.savedState = null;
   }
 
   /**
@@ -39,16 +58,21 @@ export default class StoryScene extends Phaser.Scene {
     this.returnScene = data.returnScene || 'MapScene';
     this.mode = data.mode || 'story';
     this.startKnot = data.startKnot || null;
-    this.returnData = data.returnData || null;
+    this.savedState = data.storyState || null;
+    this.returnData = data.returnData || {};
 
-    console.log('[StoryScene] 初始化', { mode: this.mode, startKnot: this.startKnot });
+    console.log('[StoryScene] 初始化', { 
+      mode: this.mode, 
+      startKnot: this.startKnot,
+      hasSavedState: !!this.savedState 
+    });
   }
 
   /**
    * 预加载资源
    */
   preload() {
-    // 加载故事JSON（如果提供了URL）
+    // 如果提供了URL，加载故事JSON
     if (this.storyData && typeof this.storyData === 'string') {
       this.load.json('storyData', this.storyData);
     }
@@ -58,6 +82,14 @@ export default class StoryScene extends Phaser.Scene {
    * 创建场景
    */
   create() {
+    // 获取Ink插件
+    this.ink = this.plugins.get('InkPlugin');
+    if (!this.ink) {
+      console.error('[StoryScene] InkPlugin未找到');
+      this._returnToMap();
+      return;
+    }
+
     // 创建背景
     this._createBackground();
 
@@ -66,19 +98,16 @@ export default class StoryScene extends Phaser.Scene {
       typewriterSpeed: this.mode === 'intro' ? 15 : 25
     });
 
-    // 设置UI回调
+    // 设置UI继续回调
     this.storyUI.setOnContinue(() => {
       this._onContinueClicked();
     });
 
-    // 创建故事管理器
-    this.storyManager = new InkStoryManager(this, {
-      autoSave: this.mode === 'story',
-      saveKey: 'ink_story_state'
-    });
+    // 绑定Ink事件
+    this._bindInkEvents();
 
-    // 绑定额外的事件
-    this._bindStoryEvents();
+    // 绑定外部函数
+    this._bindExternalFunctions();
 
     // 加载故事
     this._loadStory();
@@ -94,12 +123,187 @@ export default class StoryScene extends Phaser.Scene {
 
     // 点击跳过打字
     this.input.on('pointerdown', () => {
-      if (this.storyUI.isTyping) {
+      if (this.storyUI && this.storyUI.isTyping) {
         this.storyUI.completeTyping();
       }
     });
 
     console.log('[StoryScene] 创建完成');
+  }
+
+  /**
+   * 绑定Ink事件
+   * @private
+   */
+  _bindInkEvents() {
+    // 故事更新事件
+    this.ink.on('story-update', (content) => {
+      this._onStoryUpdate(content);
+    });
+
+    // 故事结束事件
+    this.ink.on('story-end', () => {
+      this._onStoryEnd();
+    });
+
+    // 标签事件
+    this.ink.on('change-background', ({ background }) => {
+      this._changeBackground(background);
+    });
+
+    this.ink.on('change-music', ({ music }) => {
+      console.log('[StoryScene] 切换音乐:', music);
+    });
+
+    this.ink.on('play-sound', ({ sound }) => {
+      console.log('[StoryScene] 播放音效:', sound);
+    });
+
+    this.ink.on('story-event', ({ event }) => {
+      this._handleStoryEvent(event);
+    });
+
+    // 错误事件
+    this.ink.on('story-error', ({ error }) => {
+      console.error('[StoryScene] 故事错误:', error);
+      this._returnToMap();
+    });
+  }
+
+  /**
+   * 绑定外部函数
+   * @private
+   */
+  _bindExternalFunctions() {
+    // 游戏系统函数
+    this.ink.bindExternalFunction('getCurrentLocation', () => {
+      return this.registry.get('currentLocation') || 'village';
+    });
+
+    this.ink.bindExternalFunction('getCurrentPatient', () => {
+      return this.registry.get('currentPatient') || 'unknown';
+    });
+
+    this.ink.bindExternalFunction('getPatientName', () => {
+      const patient = this.registry.get('currentPatientData');
+      return patient?.name || '患者';
+    });
+
+    this.ink.bindExternalFunction('getPatientsCount', () => {
+      const patients = this.registry.get('healedPatients') || [];
+      return patients.length;
+    });
+
+    this.ink.bindExternalFunction('modifyReputation', (amount) => {
+      const current = this.registry.get('reputation') || 0;
+      this.registry.set('reputation', current + amount);
+      console.log('[StoryScene] 声望变化:', amount, '当前:', current + amount);
+    });
+
+    this.ink.bindExternalFunction('modifyMoney', (amount) => {
+      const current = this.registry.get('money') || 0;
+      this.registry.set('money', current + amount);
+      console.log('[StoryScene] 金钱变化:', amount, '当前:', current + amount);
+    });
+
+    this.ink.bindExternalFunction('startBattle', (patientId) => {
+      this._startBattle(patientId);
+    });
+
+    this.ink.bindExternalFunction('goToMap', () => {
+      this._returnToMap();
+    });
+
+    this.ink.bindExternalFunction('showMessage', (message) => {
+      this.showMessage(message);
+    });
+
+    this.ink.bindExternalFunction('log', (message) => {
+      console.log('[Ink]', message);
+    });
+
+    // 存档相关函数
+    this.ink.bindExternalFunction('loadGame', () => {
+      // 检查是否有存档
+      const savedRun = localStorage.getItem('medgod_run_state');
+      const hasSave = !!savedRun;
+      console.log('[StoryScene] 检查存档:', hasSave);
+      return hasSave;
+    });
+
+    this.ink.bindExternalFunction('saveGame', () => {
+      // 保存游戏状态
+      const saveData = {
+        reputation: this.registry.get('reputation') || 0,
+        money: this.registry.get('money') || 0,
+        timestamp: Date.now()
+      };
+      localStorage.setItem('medgod_save', JSON.stringify(saveData));
+      console.log('[StoryScene] 游戏已保存');
+      return true;
+    });
+  }
+
+  /**
+   * 加载故事
+   * @private
+   */
+  _loadStory() {
+    let storyJson = this.storyData;
+
+    // 如果是字符串URL，从缓存获取
+    if (typeof storyJson === 'string') {
+      storyJson = this.cache.json.get('storyData');
+    }
+
+    if (!storyJson) {
+      console.error('[StoryScene] 没有故事数据');
+      this._returnToMap();
+      return;
+    }
+
+    // 加载故事到插件
+    const success = this.ink.loadStory(storyJson);
+
+    if (success) {
+      // 恢复保存的状态
+      if (this.savedState) {
+        this.ink.loadState(this.savedState);
+      }
+
+      // 跳转到指定节点
+      if (this.startKnot) {
+        this.ink.jumpToKnot(this.startKnot);
+      }
+
+      // 开始故事
+      this.ink.continueStory();
+    } else {
+      console.error('[StoryScene] 故事加载失败');
+      this._returnToMap();
+    }
+  }
+
+  /**
+   * 故事更新处理
+   * @param {Object} content - 故事内容
+   * @private
+   */
+  _onStoryUpdate(content) {
+    if (!content) return;
+
+    // 显示文本
+    this.storyUI.showText(content.text, {
+      tags: content.tags,
+      useTypewriter: true
+    });
+
+    // 显示选项
+    if (content.hasChoices) {
+      this.storyUI.showChoices(content.choices, (choiceIndex) => {
+        this.ink.makeChoice(choiceIndex);
+      });
+    }
   }
 
   /**
@@ -112,12 +316,51 @@ export default class StoryScene extends Phaser.Scene {
       return;
     }
 
+    // 如果有选项，不继续
+    if (this.ink.hasChoices()) {
+      return;
+    }
+
+    // 继续故事
+    this.ink.continueStory();
+  }
+
+  /**
+   * 故事结束处理
+   * @private
+   */
+  _onStoryEnd() {
+    console.log('[StoryScene] 故事结束');
+
     if (this.mode === 'intro') {
-      // 开场白模式：点击后直接返回地图
+      // 开场白模式：直接返回
       this._returnToMap();
     } else {
-      // 故事模式：继续故事
-      this._continueStory();
+      // 故事模式：延迟后返回
+      this.time.delayedCall(1000, () => {
+        this._returnToMap();
+      });
+    }
+  }
+
+  /**
+   * 处理故事事件
+   * @param {string} event - 事件名称
+   * @private
+   */
+  _handleStoryEvent(event) {
+    console.log('[StoryScene] 故事事件:', event);
+
+    switch (event) {
+      case 'start_battle':
+        this._startBattle();
+        break;
+      case 'goto_map':
+        this._returnToMap();
+        break;
+      case 'chapter_complete':
+        this.registry.set('chapterCompleted', true);
+        break;
     }
   }
 
@@ -126,7 +369,6 @@ export default class StoryScene extends Phaser.Scene {
    * @private
    */
   _createBackground() {
-    // 默认背景
     this.background = this.add.rectangle(
       this.scale.width / 2,
       this.scale.height / 2,
@@ -134,15 +376,11 @@ export default class StoryScene extends Phaser.Scene {
       this.scale.height,
       0x1a1a2e
     );
-
-    // 监听背景变更事件
-    this.events.on('story-change-background', (bgName) => {
-      this._changeBackground(bgName);
-    });
   }
 
   /**
    * 切换背景
+   * @param {string} bgName - 背景名称
    * @private
    */
   _changeBackground(bgName) {
@@ -164,168 +402,15 @@ export default class StoryScene extends Phaser.Scene {
   }
 
   /**
-   * 绑定故事事件
-   * @private
-   */
-  _bindStoryEvents() {
-    // 监听战斗开始事件
-    this.events.on('ink-start-battle', (patientId) => {
-      this._startBattle(patientId);
-    });
-
-    // 监听返回地图事件
-    this.events.on('ink-goto-map', () => {
-      this._returnToMap();
-    });
-
-    // 监听音乐变更
-    this.events.on('story-change-music', (musicName) => {
-      console.log('[StoryScene] 切换音乐:', musicName);
-    });
-  }
-
-  /**
-   * 加载故事
-   * @private
-   */
-  _loadStory() {
-    let storyData = this.storyData;
-
-    // 如果是字符串URL，从缓存获取
-    if (typeof storyData === 'string') {
-      storyData = this.cache.json.get('storyData');
-    }
-
-    console.log('[StoryScene] 加载故事数据:', storyData ? '有数据' : '无数据');
-
-    if (!storyData) {
-      console.error('[StoryScene] 没有故事数据');
-      this._returnToMap();
-      return;
-    }
-
-    // 加载故事
-    const success = this.storyManager.loadStory(storyData);
-    console.log('[StoryScene] 故事加载结果:', success);
-
-    if (success) {
-      // 如果指定了起始节点，跳转过去
-      if (this.startKnot) {
-        this.storyManager.jumpToKnot(this.startKnot);
-      }
-
-      // 开始显示故事
-      if (this.mode === 'intro') {
-        this._showIntro();
-      } else {
-        this._continueStory();
-      }
-    } else {
-      console.error('[StoryScene] 故事加载失败');
-      this._returnToMap();
-    }
-  }
-
-  /**
-   * 显示开场白
-   * @private
-   */
-  _showIntro() {
-    console.log('[StoryScene] 显示开场白');
-
-    // 获取开场白内容
-    const content = this.storyManager.continue();
-
-    if (content && content.text) {
-      // 显示文本（无选项）
-      this.storyUI.showText(content.text, {
-        tags: content.tags,
-        useTypewriter: true
-      });
-
-      // 开场白模式下，不显示选项，点击任意处返回
-      console.log('[StoryScene] 开场白显示完成，点击任意处继续');
-    } else {
-      console.warn('[StoryScene] 开场白内容为空');
-      this._returnToMap();
-    }
-  }
-
-  /**
-   * 继续故事
-   * @private
-   */
-  _continueStory() {
-    if (!this.storyManager) return;
-
-    // 如果有选项，不继续
-    if (this.storyManager.hasChoices()) {
-      return;
-    }
-
-    console.log('[StoryScene] 继续故事...');
-
-    // 获取下一段内容
-    const content = this.storyManager.continue();
-
-    console.log('[StoryScene] 故事内容:', content);
-
-    if (content) {
-      // 显示文本
-      this.storyUI.showText(content.text, {
-        tags: content.tags,
-        useTypewriter: true
-      });
-
-      // 显示选项
-      if (content.hasChoices) {
-        this.storyUI.showChoices(content.choices, (choiceIndex) => {
-          this._makeChoice(choiceIndex);
-        });
-      }
-    } else {
-      // 故事结束
-      this._onStoryEnd();
-    }
-  }
-
-  /**
-   * 做出选择
-   * @private
-   */
-  _makeChoice(choiceIndex) {
-    // 清除选项
-    this.storyUI.clearChoices();
-
-    // 选择
-    this.storyManager.chooseChoice(choiceIndex);
-
-    // 继续
-    this._continueStory();
-  }
-
-  /**
-   * 故事结束
-   * @private
-   */
-  _onStoryEnd() {
-    console.log('[StoryScene] 故事结束');
-
-    // 延迟后返回
-    this.time.delayedCall(1000, () => {
-      this._returnToMap();
-    });
-  }
-
-  /**
    * 开始战斗
+   * @param {string} patientId - 病人ID
    * @private
    */
   _startBattle(patientId) {
     console.log('[StoryScene] 开始战斗:', patientId);
 
     // 保存故事状态
-    const storyState = this.storyManager.saveState();
+    const storyState = this.ink.saveState();
 
     // 切换到战斗场景
     this.scene.start('BattleScene', {
@@ -340,13 +425,8 @@ export default class StoryScene extends Phaser.Scene {
    * @private
    */
   _returnToMap() {
-    console.log('[StoryScene] 返回地图');
-    // 如果有返回数据，传递给返回场景
-    if (this.returnData) {
-      this.scene.start(this.returnScene, this.returnData);
-    } else {
-      this.scene.start(this.returnScene);
-    }
+    console.log('[StoryScene] 返回地图:', this.returnScene);
+    this.scene.start(this.returnScene, this.returnData);
   }
 
   /**
@@ -354,13 +434,12 @@ export default class StoryScene extends Phaser.Scene {
    * @param {string} message - 消息内容
    */
   showMessage(message) {
-    // 创建临时消息显示
     const text = this.add.text(
       this.scale.width / 2,
       this.scale.height / 2,
       message,
       {
-        fontFamily: 'Arial',
+        fontFamily: 'Noto Serif SC, serif',
         fontSize: '24px',
         color: '#ffd700',
         stroke: '#000000',
@@ -370,7 +449,6 @@ export default class StoryScene extends Phaser.Scene {
     text.setOrigin(0.5);
     text.setDepth(2000);
 
-    // 动画
     this.tweens.add({
       targets: text,
       y: text.y - 50,
@@ -395,14 +473,17 @@ export default class StoryScene extends Phaser.Scene {
   shutdown() {
     console.log('[StoryScene] 关闭');
 
-    if (this.storyManager) {
-      this.storyManager.destroy();
-      this.storyManager = null;
-    }
-
     if (this.storyUI) {
       this.storyUI.destroy();
       this.storyUI = null;
+    }
+
+    // 清理事件监听
+    if (this.ink) {
+      this.ink.off('story-update');
+      this.ink.off('story-end');
+      this.ink.off('change-background');
+      this.ink.off('story-error');
     }
   }
 }

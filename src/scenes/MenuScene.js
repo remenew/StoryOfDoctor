@@ -51,6 +51,11 @@ export class MenuScene extends Phaser.Scene {
       this.showHelp();
     });
 
+    // 测试：故事模式入口
+    this.createButton(width / 2, height / 2 + 210, '测试故事', () => {
+      this.testStory();
+    });
+
     // 检查是否首次游玩
     if (isFirstTime()) {
       this.showTutorialHint();
@@ -111,6 +116,29 @@ export class MenuScene extends Phaser.Scene {
   continueGame(savedRun) {
     // Resume — MapScene's fallback path reads from localStorage directly
     this.scene.start('MapScene', {});
+  }
+
+  /**
+   * 测试故事模式
+   * 加载Ink故事并进入StoryScene
+   */
+  testStory() {
+    // 加载故事JSON
+    this.load.json('storyData', 'src/config/main.json');
+    
+    this.load.once('complete', () => {
+      const storyData = this.cache.json.get('storyData');
+      
+      // 进入故事场景
+      this.scene.start('StoryScene', {
+        storyData: storyData,
+        mode: 'story',
+        startKnot: 'game_start',
+        returnScene: 'MenuScene'
+      });
+    });
+    
+    this.load.start();
   }
 
   showHelp() {
